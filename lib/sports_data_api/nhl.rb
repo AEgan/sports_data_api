@@ -11,6 +11,7 @@ module SportsDataApi
 
   autoload :Season, File.join(DIR, 'season')
   autoload :Game, File.join(DIR, 'game')
+  autoload :Games, File.join(DIR, 'games')
   autoload :Team, File.join(DIR, 'team')
   autoload :Season, File.join(DIR, 'season')
   autoload :Venue, File.join(DIR, 'venue')
@@ -25,6 +26,12 @@ module SportsDataApi
     response = self.response_xml(version, "/games/#{year}/#{season}/schedule.xml")
 
     return Season.new(response.xpath("/league/season-schedule"))
+  end
+
+  def self.daily(year, month, day, version = DEFAULT_VERSION)
+    raise SportsDataApi::Nhl::Exception.new("#{year}-#{month}-#{day} is not a valid date") unless Date.valid_date?(year, month, day)
+    response = self.response_xml(version, "/games/#{year}/#{month}/#{day}/schedule.xml")
+    return Games.new(response.xpath('league/daily-schedule'))
   end
 
   private
