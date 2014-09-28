@@ -1,0 +1,102 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://api.sportsdatallc.org/nhl-t3/games/2013/10/9/schedule.xml?api_key=gk32v4v48gsfy39pqvg2hp82
+    body:
+      encoding: US-ASCII
+      base64_string: ''
+    headers:
+      Accept:
+      - "*/*; q=0.5, application/xml"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Accept-Ranges:
+      - bytes
+      Cache-Control:
+      - public, must-revalidate, max-age=2
+      Content-Type:
+      - application/xml
+      Date:
+      - Sun, 28 Sep 2014 19:26:18 GMT
+      Etag:
+      - '"badfb47de3613aaa76476aad51a287fe"'
+      Last-Modified:
+      - Mon, 03 Mar 2014 16:59:32 GMT
+      Server:
+      - nginx
+      X-Mashery-Responder:
+      - prod-j-worker-us-east-1b-45.mashery.com
+      X-Via:
+      - Nginx-S3-Proxy
+      Content-Length:
+      - '2416'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      base64_string: |
+        PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPCEtLSBH
+        ZW5lcmF0aW9uIHN0YXJ0ZWQgQCAyMDE0LTAzLTAzIDE2OjU5OjMxICswMDAw
+        IC0tPgo8bGVhZ3VlIHhtbG5zPSJodHRwOi8vZmVlZC5lbGFzdGljc3RhdHMu
+        Y29tL3NjaGVtYS9ob2NrZXkvc2NoZWR1bGUtdjIuMC54c2QiIGlkPSJmZDU2
+        MDEwNy1hODViLTQzODgtYWIwZC02NTVhZDAyMmFmZjciIG5hbWU9Ik5ITCIg
+        YWxpYXM9Ik5ITCI+CiAgPGRhaWx5LXNjaGVkdWxlIGRhdGU9IjIwMTMtMTAt
+        MDkiPgogICAgPGdhbWVzPgogICAgICA8Z2FtZSBpZD0iNjk4YzA2NmEtODEw
+        Mi00NDZkLWIwY2ItYjBlM2FiMzg0Y2E5IiBzdGF0dXM9ImNsb3NlZCIgY292
+        ZXJhZ2U9ImZ1bGwiIGhvbWVfdGVhbT0iNDQxNjYwZWEtMGYyNC0xMWUyLTg1
+        MjUtMThhOTA1NzY3ZTQ0IiBhd2F5X3RlYW09IjQ0MTYyNzJmLTBmMjQtMTFl
+        Mi04NTI1LTE4YTkwNTc2N2U0NCIgc2NoZWR1bGVkPSIyMDEzLTEwLTEwVDAw
+        OjAwOjAwKzAwOjAwIj4KICAgICAgICA8dmVudWUgaWQ9IjE0ZTkyM2I3LWE2
+        MzYtNDc2Zi1iODEwLWIxNTk2Nzc4N2UzYyIgbmFtZT0iU2NvdHRyYWRlIENl
+        bnRlciIgY2FwYWNpdHk9IjE5MTUwIiBhZGRyZXNzPSIxNDAxIENsYXJrIEF2
+        ZS4iIGNpdHk9IlN0LiBMb3VpcyIgc3RhdGU9Ik1PIiB6aXA9IjYzMTAzIiBj
+        b3VudHJ5PSJVU0EiLz4KICAgICAgICA8aG9tZSBuYW1lPSJTdC4gTG91aXMg
+        Qmx1ZXMiIGFsaWFzPSJTVEwiIGlkPSI0NDE2NjBlYS0wZjI0LTExZTItODUy
+        NS0xOGE5MDU3NjdlNDQiPgogICAgICAgIDwvaG9tZT4KICAgICAgICA8YXdh
+        eSBuYW1lPSJDaGljYWdvIEJsYWNraGF3a3MiIGFsaWFzPSJDSEkiIGlkPSI0
+        NDE2MjcyZi0wZjI0LTExZTItODUyNS0xOGE5MDU3NjdlNDQiPgogICAgICAg
+        IDwvYXdheT4KICAgICAgICA8YnJvYWRjYXN0IG5ldHdvcms9Ik5CQ1NOIiBz
+        YXRlbGxpdGU9IjIyMCIvPgogICAgICA8L2dhbWU+CiAgICAgIDxnYW1lIGlk
+        PSIyMTVjYjg1OC01OTNiLTRmZmItYmIyNC05NWNkNDM3NmNiM2YiIHN0YXR1
+        cz0iY2xvc2VkIiBjb3ZlcmFnZT0iZnVsbCIgaG9tZV90ZWFtPSI0NDE1OTI0
+        MS0wZjI0LTExZTItODUyNS0xOGE5MDU3NjdlNDQiIGF3YXlfdGVhbT0iNDQx
+        NzEzYjctMGYyNC0xMWUyLTg1MjUtMThhOTA1NzY3ZTQ0IiBzY2hlZHVsZWQ9
+        IjIwMTMtMTAtMTBUMDA6MDA6MDArMDA6MDAiPgogICAgICAgIDx2ZW51ZSBp
+        ZD0iMTUyZDYzZDItODI1Zi00OTI4LWEwOGEtNzA1NjQyNjhiNDA1IiBuYW1l
+        PSJTY290aWFiYW5rIFNhZGRsZWRvbWUiIGNhcGFjaXR5PSIxOTI4OSIgYWRk
+        cmVzcz0iNTU1IFNhZGRsZWRvbWUgUmlzZSBTLkUuIiBjaXR5PSJDYWxnYXJ5
+        IiBzdGF0ZT0iQUIiIHppcD0iVDJHIDJXMSIgY291bnRyeT0iQ0FOQURBIi8+
+        CiAgICAgICAgPGhvbWUgbmFtZT0iQ2FsZ2FyeSBGbGFtZXMiIGFsaWFzPSJD
+        R1kiIGlkPSI0NDE1OTI0MS0wZjI0LTExZTItODUyNS0xOGE5MDU3NjdlNDQi
+        PgogICAgICAgIDwvaG9tZT4KICAgICAgICA8YXdheSBuYW1lPSJNb250cmVh
+        bCBDYW5hZGllbnMiIGFsaWFzPSJNVEwiIGlkPSI0NDE3MTNiNy0wZjI0LTEx
+        ZTItODUyNS0xOGE5MDU3NjdlNDQiPgogICAgICAgIDwvYXdheT4KICAgICAg
+        PC9nYW1lPgogICAgICA8Z2FtZSBpZD0iMjc3MjQwYWYtMDhiMy00YzViLThh
+        ZWEtYmFjM2Q4MTEwMjAwIiBzdGF0dXM9ImNsb3NlZCIgY292ZXJhZ2U9ImZ1
+        bGwiIGhvbWVfdGVhbT0iNDQxNTFmN2EtMGYyNC0xMWUyLTg1MjUtMThhOTA1
+        NzY3ZTQ0IiBhd2F5X3RlYW09IjQ0MTZmNWUyLTBmMjQtMTFlMi04NTI1LTE4
+        YTkwNTc2N2U0NCIgc2NoZWR1bGVkPSIyMDEzLTEwLTEwVDAyOjMwOjAwKzAw
+        OjAwIj4KICAgICAgICA8dmVudWUgaWQ9ImRlYzI1M2Q0LTY4ZGYtNDcwYi1i
+        OGZjLWQ2NjNhN2ZhNDcwNCIgbmFtZT0iU3RhcGxlcyBDZW50ZXIiIGNhcGFj
+        aXR5PSIxODExOCIgYWRkcmVzcz0iMTExMSBTLiBGaWd1ZXJvYSBTdC4iIGNp
+        dHk9IkxvcyBBbmdlbGVzIiBzdGF0ZT0iQ0EiIHppcD0iOTAwMTUiIGNvdW50
+        cnk9IlVTQSIvPgogICAgICAgIDxob21lIG5hbWU9IkxvcyBBbmdlbGVzIEtp
+        bmdzIiBhbGlhcz0iTEEiIGlkPSI0NDE1MWY3YS0wZjI0LTExZTItODUyNS0x
+        OGE5MDU3NjdlNDQiPgogICAgICAgIDwvaG9tZT4KICAgICAgICA8YXdheSBu
+        YW1lPSJPdHRhd2EgU2VuYXRvcnMiIGFsaWFzPSJPVFQiIGlkPSI0NDE2ZjVl
+        Mi0wZjI0LTExZTItODUyNS0xOGE5MDU3NjdlNDQiPgogICAgICAgIDwvYXdh
+        eT4KICAgICAgICA8YnJvYWRjYXN0IG5ldHdvcms9IkZTLVciIHNhdGVsbGl0
+        ZT0iNjkyIi8+CiAgICAgIDwvZ2FtZT4KICAgIDwvZ2FtZXM+CiAgPC9kYWls
+        eS1zY2hlZHVsZT4KPC9sZWFndWU+CjwhLS0gR2VuZXJhdGlvbiBlbmRlZCBA
+        IDIwMTQtMDMtMDMgMTY6NTk6MzEgKzAwMDAgLS0+Cg==
+    http_version: 
+  recorded_at: Sun, 28 Sep 2014 19:26:19 GMT
+recorded_with: VCR 2.4.0
