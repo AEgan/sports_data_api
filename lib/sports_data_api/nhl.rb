@@ -13,6 +13,7 @@ module SportsDataApi
   autoload :Game, File.join(DIR, 'game')
   autoload :Games, File.join(DIR, 'games')
   autoload :Team, File.join(DIR, 'team')
+  autoload :Teams, File.join(DIR, 'teams')
   autoload :Season, File.join(DIR, 'season')
   autoload :Venue, File.join(DIR, 'venue')
   autoload :Broadcast, File.join(DIR, 'broadcast')
@@ -28,13 +29,21 @@ module SportsDataApi
     return Season.new(response.xpath("/league/season-schedule"))
   end
 
+  # fetches the daily schedule for the NHL
   def self.daily(year, month, day, version = DEFAULT_VERSION)
     raise SportsDataApi::Nhl::Exception.new("#{year}-#{month}-#{day} is not a valid date") unless Date.valid_date?(year, month, day)
     response = self.response_xml(version, "/games/#{year}/#{month}/#{day}/schedule.xml")
     return Games.new(response.xpath('league/daily-schedule'))
   end
 
+  # fetches all of the teams for the NHL
+  def self.teams(version = DEFAULT_VERSION)
+    response = self.response_xml(version, "/league/hierarchy.xml")
+    Teams.new(response.xpath('/league'))
+  end
+
   private
+  # helper method that gets the XML froma request (parsed by nokogiri)
   def self.response_xml(version, url)
     base_url = BASE_URL % { access_level: SportsDataApi.access_level(SPORT), version: version }
     response = SportsDataApi.generic_request("#{base_url}#{url}", SPORT)

@@ -1,8 +1,7 @@
 module SportsDataApi
   module Nhl
     class Team
-      attr_reader :id, :name, :alias, :conference, :division,
-                  :stats, :players, :points
+      attr_reader :id, :name, :alias, :conference, :division, :market
 
       def initialize(xml, conference = nil, division = nil)
         xml = xml.first if xml.is_a? Nokogiri::XML::NodeSet
@@ -10,7 +9,7 @@ module SportsDataApi
           @id = xml['id']
           @name = xml['name']
           @alias = xml['alias']
-          @points = xml['points'] ? xml['points'].to_i : nil
+          @market = xml['market']
           @conference = conference
           @division = division
           # @players = xml.xpath("players/player").map do |player_xml|
@@ -25,7 +24,7 @@ module SportsDataApi
         # Must have an id to compare
         return false if self.id.nil?
 
-        if other.is_a? SportsDataApi::Nba::Team
+        if other.is_a? SportsDataApi::Nhl::Team
           return false if other.id.nil?
           self.id === other.id
         elsif other.is_a? Symbol
