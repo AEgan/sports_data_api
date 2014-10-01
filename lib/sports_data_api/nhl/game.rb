@@ -3,7 +3,7 @@ module SportsDataApi
     class Game
       attr_reader :id, :scheduled, :home, :home_team, :away,
         :away_team, :status, :venue, :broadcast, :year, :season,
-        :date, :quarter, :clock
+        :date, :clock, :period
 
       def initialize(args={})
         xml = args.fetch(:xml)
@@ -19,6 +19,8 @@ module SportsDataApi
           @away = xml['away_team']
           @status = xml['status']
 
+          @clock = xml['clock']
+          @period = xml['period'].nil? ? nil : xml['period'].to_i
           @home_team = Team.new(xml.xpath('home').first)
           @away_team = Team.new(xml.xpath('away').first)
           @venue = Venue.new(xml.xpath('venue'))

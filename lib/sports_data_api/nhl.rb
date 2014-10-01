@@ -51,6 +51,13 @@ module SportsDataApi
     response.xpath("team/players/player").map { |player| Player.new(player) }
   end
 
+  ##
+  # Fetches NHL game summary for a given game
+  def self.game_summary(game, version = DEFAULT_VERSION)
+    response = self.response_xml(version, "/games/#{game}/summary.xml")
+    Game.new(xml: response.xpath("/game"))
+  end
+
   private
   # helper method that gets the XML froma request (parsed by nokogiri)
   def self.response_xml(version, url)
