@@ -12,9 +12,6 @@ module SportsDataApi
           @market = xml['market']
           @conference = conference
           @division = division
-          # @players = xml.xpath("players/player").map do |player_xml|
-          #   Player.new(player_xml)
-          # end
         end
       end
 
@@ -32,6 +29,15 @@ module SportsDataApi
         else
           super(other)
         end
+      end
+
+      # gets the roster for the team
+      def get_roster(version = SportsDataApi::NHL::DEFAULT_VERSION)
+        base_url = SportsDataApi::NHL::BASE_URL % { access_level: SportsDataApi.access_level(SPORT), version: version }
+        url = "/teams/#{@id}/profile.xml"
+        response = SportsDataApi.generic_request("#{base_url}#{url}", SportsDataApi::NHL::SPORT)
+        xml = Nokogiri::XML(response.to_s).remove_namespaces!
+        xml.xpath('team/players/player').map { |player| Player.new(player) }
       end
     end
   end

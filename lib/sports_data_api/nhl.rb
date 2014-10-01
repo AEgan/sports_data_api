@@ -17,6 +17,7 @@ module SportsDataApi
   autoload :Season, File.join(DIR, 'season')
   autoload :Venue, File.join(DIR, 'venue')
   autoload :Broadcast, File.join(DIR, 'broadcast')
+  autoload :Player, File.join(DIR, 'player')
 
   ##
   # Fetches NHL season schedule for a given year and season
@@ -40,6 +41,14 @@ module SportsDataApi
   def self.teams(version = DEFAULT_VERSION)
     response = self.response_xml(version, "/league/hierarchy.xml")
     Teams.new(response.xpath('/league'))
+  end
+
+  # fetches the roster for the team in the NHL
+  # team is the Sprots Data LLC id for the team
+  def self.team_roster(team, version = DEFAULT_VERSION)
+    response = self.response_xml(version, "/teams/#{team}/profile.xml")
+
+    response.xpath("team/players/player").map { |player| Player.new(player) }
   end
 
   private
