@@ -8,26 +8,22 @@ describe SportsDataApi::Nhl::Player, vcr: {
   before do
     SportsDataApi.set_key(:nhl, api_key(:nhl))
     SportsDataApi.set_access_level(:nhl, 't')
-    kings_id = SportsDataApi::Nhl.teams.first.id
-    roster = SportsDataApi::Nhl.team_roster(kings_id)
-    @pearson = roster.first
-    @king = roster[2]
   end
 
-  # let(:kings_id) { SportsDataApi::Nhl.teams.first.id }
-  #
-  #
-  # let(:roster) { SportsDataApi::Nhl.team_roster(kings_id) }
-  #
-  #
-  # let(:pearson) { roster.first }
-  #
-  #
-  # let(:king) { roster[2] }
+  let(:kings_id) { SportsDataApi::Nhl.teams.first.id }
+
+
+  let(:roster) { SportsDataApi::Nhl.team_roster(kings_id) }
+
+
+  let(:pearson) { roster.first }
+
+
+  let(:king) { roster[2] }
 
 
   describe 'pearson' do
-    subject { @pearson }
+    subject { pearson }
     it 'should have an id' do
       expect(subject.id).to eql '3abc026d-b911-11e2-8051-f4ce4684ea4c'
     end
@@ -94,7 +90,7 @@ describe SportsDataApi::Nhl::Player, vcr: {
   end
 
   describe 'king' do
-    subject { @king }
+    subject { king }
     it 'should have an id' do
       expect(subject.id).to eql '427cfba4-0f24-11e2-8525-18a905767e44'
     end

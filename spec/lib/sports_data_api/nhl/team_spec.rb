@@ -30,4 +30,24 @@ describe SportsDataApi::Nhl::Team, vcr: {
     its(:market) { should eq 'Arizona' }
     its(:name) { should eq 'Coyotes' }
   end
+
+  context 'using players from the get_roster method' do
+    subject { teams.first.get_roster.first }
+    its(:id) { should eq '3abc026d-b911-11e2-8051-f4ce4684ea4c' }
+    its(:status) { should eq 'ACT' }
+    its(:full_name) { should eq 'Tanner Pearson' }
+    its(:first_name) { should eq 'Tanner' }
+    its(:last_name) { should eq 'Pearson' }
+    its(:abbr_name) { should eq 'T.Pearson' }
+    its(:height) { should eq '72' }
+    its(:weight) { should eq '193' }
+    its(:position) { should eq 'F' }
+    its(:primary_position) { should eq 'C' }
+    its(:jersey_number) { should eq '70' }
+    its(:experience) { should eq '1' }
+    its(:birth_place) { should eq 'Kitchener, ON, CAN' }
+    its(:birthdate) { should eq "1992-08-10" }
+    its(:draft_round) { should eq "1" }
+    its(:draft_pick) { should eq "30" }
+  end
 end
