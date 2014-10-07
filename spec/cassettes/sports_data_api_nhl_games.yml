@@ -1,0 +1,417 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://api.sportsdatallc.org/nba-t3/games/2013/10/11/schedule.xml?api_key=<API_KEY>
+    body:
+      encoding: US-ASCII
+      base64_string: ''
+    headers:
+      Accept:
+      - "*/*; q=0.5, application/xml"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Accept-Ranges:
+      - bytes
+      Cache-Control:
+      - public, must-revalidate, max-age=2
+      Content-Type:
+      - application/xml
+      Date:
+      - Wed, 01 Oct 2014 21:45:06 GMT
+      Etag:
+      - '"af99717b54544f2d0afbb92148f96028"'
+      Last-Modified:
+      - Sun, 13 Oct 2013 03:14:27 GMT
+      Server:
+      - nginx
+      X-Mashery-Responder:
+      - prod-j-worker-us-east-1e-40.mashery.com
+      X-Via:
+      - Nginx-S3-Proxy
+      Content-Length:
+      - '3733'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      base64_string: |
+        PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPCEtLSBH
+        ZW5lcmF0aW9uIHN0YXJ0ZWQgQCAyMDEzLTEwLTEzIDAzOjE0OjIyICswMDAw
+        IC0tPgo8bGVhZ3VlIHhtbG5zPSJodHRwOi8vZmVlZC5lbGFzdGljc3RhdHMu
+        Y29tL3NjaGVtYS9iYXNrZXRiYWxsL3NjaGVkdWxlLXYyLjAueHNkIiBpZD0i
+        NDM1MzEzOGQtNGMyMi00Mzk2LTk1ZDgtNWY1ODdkMmRmMjVjIiBuYW1lPSJO
+        QkEiIGFsaWFzPSJOQkEiPgogIDxkYWlseS1zY2hlZHVsZSBkYXRlPSIyMDEz
+        LTEwLTExIj4KICAgIDxnYW1lcz4KICAgICAgPGdhbWUgaWQ9IjU1NDlkYzNh
+        LWNmNmYtNGEzMi1iNDVkLWRkMWZkMTljNTUwNiIgc3RhdHVzPSJjbG9zZWQi
+        IGNvdmVyYWdlPSJmdWxsIiBob21lX3RlYW09IjU4M2VjODdkLWZiNDYtMTFl
+        MS04MmNiLWY0Y2U0Njg0ZWE0YyIgYXdheV90ZWFtPSI1ODNlY2NmYS1mYjQ2
+        LTExZTEtODJjYi1mNGNlNDY4NGVhNGMiIHNjaGVkdWxlZD0iMjAxMy0xMC0x
+        MVQyMzowMDowMCswMDowMCI+CiAgICAgICAgPHZlbnVlIGlkPSIxMGZhNDc5
+        Ny0wODk5LTQzNWQtYTVjMi1hYjVmNWUxM2FjNzUiIG5hbWU9IkJvYiBDYXJw
+        ZW50ZXIgQ2VudGVyIiBjYXBhY2l0eT0iNTAwMCIgYWRkcmVzcz0iNjMxIFMg
+        Q29sbGVnZSBBdmUiIGNpdHk9Ik5ld2FyayIgc3RhdGU9IkRFIiB6aXA9IjE5
+        NzE2IiBjb3VudHJ5PSJVU0EiLz4KICAgICAgICA8aG9tZSBuYW1lPSJQaGls
+        YWRlbHBoaWEgNzZlcnMiIGFsaWFzPSJQSEkiIGlkPSI1ODNlYzg3ZC1mYjQ2
+        LTExZTEtODJjYi1mNGNlNDY4NGVhNGMiPgogICAgICAgIDwvaG9tZT4KICAg
+        ICAgICA8YXdheSBuYW1lPSJCb3N0b24gQ2VsdGljcyIgYWxpYXM9IkJPUyIg
+        aWQ9IjU4M2VjY2ZhLWZiNDYtMTFlMS04MmNiLWY0Y2U0Njg0ZWE0YyI+CiAg
+        ICAgICAgPC9hd2F5PgogICAgICAgIDxicm9hZGNhc3QgbmV0d29yaz0iQ1NO
+        LU5FIiBzYXRlbGxpdGU9IjYzMCIvPgogICAgICA8L2dhbWU+CiAgICAgIDxn
+        YW1lIGlkPSJkZjg0ZTgxOC1mODEzLTQ3NTktYTc4Yi0yYWQxZDk5NGVkZDAi
+        IHN0YXR1cz0iY2xvc2VkIiBjb3ZlcmFnZT0iZnVsbCIgaG9tZV90ZWFtPSI1
+        ODNlZDE1Ny1mYjQ2LTExZTEtODJjYi1mNGNlNDY4NGVhNGMiIGF3YXlfdGVh
+        bT0iNTgzZWM3NzMtZmI0Ni0xMWUxLTgyY2ItZjRjZTQ2ODRlYTRjIiBzY2hl
+        ZHVsZWQ9IjIwMTMtMTAtMTFUMjM6MDA6MDArMDA6MDAiPgogICAgICAgIDx2
+        ZW51ZSBpZD0iYWVjZDhkYTYtMDQwNC01OTljLWE3OTItNGIzM2ZiMDg0YTJh
+        IiBuYW1lPSJBbXdheSBDZW50ZXIiIGNhcGFjaXR5PSIxODg0NiIgYWRkcmVz
+        cz0iNDAwIFcuIENodXJjaCBTdC4iIGNpdHk9Ik9ybGFuZG8iIHN0YXRlPSJG
+        TCIgemlwPSIzMjgwMSIgY291bnRyeT0iVVNBIi8+CiAgICAgICAgPGhvbWUg
+        bmFtZT0iT3JsYW5kbyBNYWdpYyIgYWxpYXM9Ik9STCIgaWQ9IjU4M2VkMTU3
+        LWZiNDYtMTFlMS04MmNiLWY0Y2U0Njg0ZWE0YyI+CiAgICAgICAgPC9ob21l
+        PgogICAgICAgIDxhd2F5IG5hbWU9IkNsZXZlbGFuZCBDYXZhbGllcnMiIGFs
+        aWFzPSJDTEUiIGlkPSI1ODNlYzc3My1mYjQ2LTExZTEtODJjYi1mNGNlNDY4
+        NGVhNGMiPgogICAgICAgIDwvYXdheT4KICAgICAgICA8YnJvYWRjYXN0IG5l
+        dHdvcms9Ik5CQSBUViIgc2F0ZWxsaXRlPSIyMTYiLz4KICAgICAgPC9nYW1l
+        PgogICAgICA8Z2FtZSBpZD0iZjkwZWM3ZjAtNjEwYy00MzcwLWEwYTctOGIw
+        NzM4YTZhMDUyIiBzdGF0dXM9ImNsb3NlZCIgY292ZXJhZ2U9ImZ1bGwiIGhv
+        bWVfdGVhbT0iNTgzZWNkYTYtZmI0Ni0xMWUxLTgyY2ItZjRjZTQ2ODRlYTRj
+        IiBhd2F5X3RlYW09IjU4M2VjNzBlLWZiNDYtMTFlMS04MmNiLWY0Y2U0Njg0
+        ZWE0YyIgc2NoZWR1bGVkPSIyMDEzLTEwLTExVDIzOjAwOjAwKzAwOjAwIj4K
+        ICAgICAgICA8dmVudWUgaWQ9IjYyY2M5NjYxLTdiMTMtNTZlNy1iZjRhLWJi
+        YTdhZDdiZThkYSIgbmFtZT0iQWlyIENhbmFkYSBDZW50cmUiIGNhcGFjaXR5
+        PSIxOTgwMCIgYWRkcmVzcz0iNDAgQmF5IFN0LiIgY2l0eT0iVG9yb250byIg
+        c3RhdGU9Ik9OIiB6aXA9Ik01SiAyWDIiIGNvdW50cnk9IkNBIi8+CiAgICAg
+        ICAgPGhvbWUgbmFtZT0iVG9yb250byBSYXB0b3JzIiBhbGlhcz0iVE9SIiBp
+        ZD0iNTgzZWNkYTYtZmI0Ni0xMWUxLTgyY2ItZjRjZTQ2ODRlYTRjIj4KICAg
+        ICAgICA8L2hvbWU+CiAgICAgICAgPGF3YXkgbmFtZT0iTmV3IFlvcmsgS25p
+        Y2tzIiBhbGlhcz0iTllLIiBpZD0iNTgzZWM3MGUtZmI0Ni0xMWUxLTgyY2It
+        ZjRjZTQ2ODRlYTRjIj4KICAgICAgICA8L2F3YXk+CiAgICAgICAgPGJyb2Fk
+        Y2FzdCBuZXR3b3JrPSJNU0ciIHNhdGVsbGl0ZT0iNjM0Ii8+CiAgICAgIDwv
+        Z2FtZT4KICAgICAgPGdhbWUgaWQ9Ijg2NTY4NmVhLWQyMzAtNGI4Ni04YzU4
+        LWVjNWNhZTBiN2EyZCIgc3RhdHVzPSJjbG9zZWQiIGNvdmVyYWdlPSJib3hz
+        Y29yZSIgaG9tZV90ZWFtPSI1ODNlY2VhNi1mYjQ2LTExZTEtODJjYi1mNGNl
+        NDY4NGVhNGMiIGF3YXlfdGVhbT0iNTgzZWM5N2UtZmI0Ni0xMWUxLTgyY2It
+        ZjRjZTQ2ODRlYTRjIiBzY2hlZHVsZWQ9IjIwMTMtMTAtMTJUMDA6MzA6MDAr
+        MDA6MDAiPgogICAgICAgIDx2ZW51ZSBpZD0iNDY3NmUzZWYtYWIwYi00Nzg3
+        LWEwNWMtMWViZmZiNGM4MzhhIiBuYW1lPSJTcHJpbnQgQ2VudGVyIiBjYXBh
+        Y2l0eT0iMTg5NzIiIGFkZHJlc3M9IjE0MDcgR3JhbmQgQm91bGV2YXJkIiBj
+        aXR5PSJLYW5zYXMgQ2l0eSIgc3RhdGU9Ik1PIiB6aXA9IjY0MTA2IiBjb3Vu
+        dHJ5PSJVU0EiLz4KICAgICAgICA8aG9tZSBuYW1lPSJNaWFtaSBIZWF0IiBh
+        bGlhcz0iTUlBIiBpZD0iNTgzZWNlYTYtZmI0Ni0xMWUxLTgyY2ItZjRjZTQ2
+        ODRlYTRjIj4KICAgICAgICA8L2hvbWU+CiAgICAgICAgPGF3YXkgbmFtZT0i
+        Q2hhcmxvdHRlIEJvYmNhdHMiIGFsaWFzPSJDSEEiIGlkPSI1ODNlYzk3ZS1m
+        YjQ2LTExZTEtODJjYi1mNGNlNDY4NGVhNGMiPgogICAgICAgIDwvYXdheT4K
+        ICAgICAgPC9nYW1lPgogICAgICA8Z2FtZSBpZD0iMmZhNDNiNTQtM2ViNC00
+        MDE2LTk5YTItYTYyOGJkYWZlNTg4IiBzdGF0dXM9ImNsb3NlZCIgY292ZXJh
+        Z2U9ImJveHNjb3JlIiBob21lX3RlYW09IjU4M2VkMDU2LWZiNDYtMTFlMS04
+        MmNiLWY0Y2U0Njg0ZWE0YyIgYXdheV90ZWFtPSI1ODNlY2U1MC1mYjQ2LTEx
+        ZTEtODJjYi1mNGNlNDY4NGVhNGMiIHNjaGVkdWxlZD0iMjAxMy0xMC0xMlQw
+        MTowMDowMCswMDowMCI+CiAgICAgICAgPHZlbnVlIGlkPSI0NWRmNTRiZS00
+        ODI4LTRlZTAtODM0OC01NGJiNzgyYjdhNjEiIG5hbWU9IkNlbnR1cnlMaW5r
+        IEFyZW5hIEJvaXNlIiBjYXBhY2l0eT0iNTczMiIgYWRkcmVzcz0iMjMzIFNv
+        dXRoIENhcGl0b2wgQm91bGV2YXJkIiBjaXR5PSJCb2lzZSIgc3RhdGU9IklE
+        IiB6aXA9IjgzNzAyIiBjb3VudHJ5PSJVU0EiLz4KICAgICAgICA8aG9tZSBu
+        YW1lPSJQb3J0bGFuZCBUcmFpbCBCbGF6ZXJzIiBhbGlhcz0iUE9SIiBpZD0i
+        NTgzZWQwNTYtZmI0Ni0xMWUxLTgyY2ItZjRjZTQ2ODRlYTRjIj4KICAgICAg
+        ICA8L2hvbWU+CiAgICAgICAgPGF3YXkgbmFtZT0iVXRhaCBKYXp6IiBhbGlh
+        cz0iVVRBIiBpZD0iNTgzZWNlNTAtZmI0Ni0xMWUxLTgyY2ItZjRjZTQ2ODRl
+        YTRjIj4KICAgICAgICA8L2F3YXk+CiAgICAgIDwvZ2FtZT4KICAgIDwvZ2Ft
+        ZXM+CiAgPC9kYWlseS1zY2hlZHVsZT4KPC9sZWFndWU+CjwhLS0gR2VuZXJh
+        dGlvbiBlbmRlZCBAIDIwMTMtMTAtMTMgMDM6MTQ6MjIgKzAwMDAgLS0+Cg==
+    http_version: 
+  recorded_at: Wed, 01 Oct 2014 21:45:07 GMT
+- request:
+    method: get
+    uri: http://api.sportsdatallc.org/nba-t3/games/2013/10/10/schedule.xml?api_key=<API_KEY>
+    body:
+      encoding: US-ASCII
+      base64_string: ''
+    headers:
+      Accept:
+      - "*/*; q=0.5, application/xml"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 403
+      message: Forbidden
+    headers:
+      Content-Type:
+      - text/xml
+      Date:
+      - Wed, 01 Oct 2014 21:45:05 GMT
+      Retry-After:
+      - '1'
+      Server:
+      - Mashery Proxy
+      X-Mashery-Error-Code:
+      - ERR_403_DEVELOPER_OVER_QPS
+      X-Mashery-Responder:
+      - prod-j-worker-us-east-1e-46.mashery.com
+      Content-Length:
+      - '27'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      base64_string: |
+        PGgxPkRldmVsb3BlciBPdmVyIFFwczwvaDE+
+    http_version: 
+  recorded_at: Wed, 01 Oct 2014 21:45:07 GMT
+- request:
+    method: get
+    uri: http://api.sportsdatallc.org/nhl-t3/games/2013/10/10/schedule.xml?api_key=gk32v4v48gsfy39pqvg2hp82
+    body:
+      encoding: US-ASCII
+      base64_string: ''
+    headers:
+      Accept:
+      - "*/*; q=0.5, application/xml"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Accept-Ranges:
+      - bytes
+      Cache-Control:
+      - public, must-revalidate, max-age=2
+      Content-Type:
+      - application/xml
+      Date:
+      - Wed, 01 Oct 2014 21:48:08 GMT
+      Etag:
+      - '"52a8fd718c1d2fa01aa1c200d826880c"'
+      Last-Modified:
+      - Mon, 03 Mar 2014 16:59:32 GMT
+      Server:
+      - nginx
+      X-Mashery-Responder:
+      - prod-j-worker-us-east-1e-40.mashery.com
+      X-Via:
+      - Nginx-S3-Proxy
+      Content-Length:
+      - '7236'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      base64_string: |
+        PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPCEtLSBH
+        ZW5lcmF0aW9uIHN0YXJ0ZWQgQCAyMDE0LTAzLTAzIDE2OjU5OjMxICswMDAw
+        IC0tPgo8bGVhZ3VlIHhtbG5zPSJodHRwOi8vZmVlZC5lbGFzdGljc3RhdHMu
+        Y29tL3NjaGVtYS9ob2NrZXkvc2NoZWR1bGUtdjIuMC54c2QiIGlkPSJmZDU2
+        MDEwNy1hODViLTQzODgtYWIwZC02NTVhZDAyMmFmZjciIG5hbWU9Ik5ITCIg
+        YWxpYXM9Ik5ITCI+CiAgPGRhaWx5LXNjaGVkdWxlIGRhdGU9IjIwMTMtMTAt
+        MTAiPgogICAgPGdhbWVzPgogICAgICA8Z2FtZSBpZD0iZjI0Mjc1YTktNGYz
+        MC00YTgxLWFiZGYtZDE2YTlhZWRhMDg3IiBzdGF0dXM9ImNsb3NlZCIgY292
+        ZXJhZ2U9ImZ1bGwiIGhvbWVfdGVhbT0iNDQxNmQ1NTktMGYyNC0xMWUyLTg1
+        MjUtMThhOTA1NzY3ZTQ0IiBhd2F5X3RlYW09IjQ0MTY3ZGI0LTBmMjQtMTFl
+        Mi04NTI1LTE4YTkwNTc2N2U0NCIgc2NoZWR1bGVkPSIyMDEzLTEwLTEwVDIz
+        OjAwOjAwKzAwOjAwIj4KICAgICAgICA8dmVudWUgaWQ9ImJkN2I0MmZhLTE5
+        YmItNGI5MS04NjE1LTIxNGNjYzNmZjk4NyIgbmFtZT0iRmlyc3QgTmlhZ2Fy
+        YSBDZW50ZXIiIGNhcGFjaXR5PSIxODY5MCIgYWRkcmVzcz0iT25lIFNleW1v
+        dXIgSC4gS25veCBJSUkgUGxhemEiIGNpdHk9IkJ1ZmZhbG8iIHN0YXRlPSJO
+        WSIgemlwPSIxNDIwMyIgY291bnRyeT0iVVNBIi8+CiAgICAgICAgPGhvbWUg
+        bmFtZT0iQnVmZmFsbyBTYWJyZXMiIGFsaWFzPSJCVUYiIGlkPSI0NDE2ZDU1
+        OS0wZjI0LTExZTItODUyNS0xOGE5MDU3NjdlNDQiPgogICAgICAgIDwvaG9t
+        ZT4KICAgICAgICA8YXdheSBuYW1lPSJDb2x1bWJ1cyBCbHVlIEphY2tldHMi
+        IGFsaWFzPSJDQkoiIGlkPSI0NDE2N2RiNC0wZjI0LTExZTItODUyNS0xOGE5
+        MDU3NjdlNDQiPgogICAgICAgIDwvYXdheT4KICAgICAgICA8YnJvYWRjYXN0
+        IG5ldHdvcms9IkZTLU8iIHNhdGVsbGl0ZT0iNjYwIi8+CiAgICAgIDwvZ2Ft
+        ZT4KICAgICAgPGdhbWUgaWQ9IjIzZGMxYTA0LWI0ZDEtNDBiZi1iNGMwLTg3
+        YmU0Y2ZiODBhMiIgc3RhdHVzPSJjbG9zZWQiIGNvdmVyYWdlPSJmdWxsIiBo
+        b21lX3RlYW09IjQ0MTZiYTFhLTBmMjQtMTFlMi04NTI1LTE4YTkwNTc2N2U0
+        NCIgYXdheV90ZWFtPSI0NDE1Y2U0NC0wZjI0LTExZTItODUyNS0xOGE5MDU3
+        NjdlNDQiIHNjaGVkdWxlZD0iMjAxMy0xMC0xMFQyMzowMDowMCswMDowMCI+
+        CiAgICAgICAgPHZlbnVlIGlkPSI4NTRjYTk2OC1iMjVmLTQ0ZjktYWJjNS01
+        MmJjZjg4MjVmMTUiIG5hbWU9IlREIEdhcmRlbiIgY2FwYWNpdHk9IjE3NTY1
+        IiBhZGRyZXNzPSIxMDAgTGVnZW5kcyBXYXkiIGNpdHk9IkJvc3RvbiIgc3Rh
+        dGU9Ik1BIiB6aXA9IjAyMTE0IiBjb3VudHJ5PSJVU0EiLz4KICAgICAgICA8
+        aG9tZSBuYW1lPSJCb3N0b24gQnJ1aW5zIiBhbGlhcz0iQk9TIiBpZD0iNDQx
+        NmJhMWEtMGYyNC0xMWUyLTg1MjUtMThhOTA1NzY3ZTQ0Ij4KICAgICAgICA8
+        L2hvbWU+CiAgICAgICAgPGF3YXkgbmFtZT0iQ29sb3JhZG8gQXZhbGFuY2hl
+        IiBhbGlhcz0iQ09MIiBpZD0iNDQxNWNlNDQtMGYyNC0xMWUyLTg1MjUtMThh
+        OTA1NzY3ZTQ0Ij4KICAgICAgICA8L2F3YXk+CiAgICAgICAgPGJyb2FkY2Fz
+        dCBuZXR3b3JrPSJORVNOIiBzYXRlbGxpdGU9IjYyOCIvPgogICAgICA8L2dh
+        bWU+CiAgICAgIDxnYW1lIGlkPSIwYWQxNDY2Ny0zNTU1LTRmYWEtOTkzNy0y
+        NWE1MzVhNDc1ZjkiIHN0YXR1cz0iY2xvc2VkIiBjb3ZlcmFnZT0iZnVsbCIg
+        aG9tZV90ZWFtPSI0NDE3ZWVkZS0wZjI0LTExZTItODUyNS0xOGE5MDU3Njdl
+        NDQiIGF3YXlfdGVhbT0iNDQxODJhOWQtMGYyNC0xMWUyLTg1MjUtMThhOTA1
+        NzY3ZTQ0IiBzY2hlZHVsZWQ9IjIwMTMtMTAtMTBUMjM6MDA6MDArMDA6MDAi
+        PgogICAgICAgIDx2ZW51ZSBpZD0iNDhmMDkyZWQtY2U0OS00YTA4LTk3YzYt
+        ZGVmMjg0YmE2NzIxIiBuYW1lPSJWZXJpem9uIENlbnRlciIgY2FwYWNpdHk9
+        IjE4NTA2IiBhZGRyZXNzPSI2MDEgRiBTdC4gTi5XLiIgY2l0eT0iV2FzaGlu
+        Z3RvbiIgc3RhdGU9IkRDIiB6aXA9IjIwMDA0IiBjb3VudHJ5PSJVU0EiLz4K
+        ICAgICAgICA8aG9tZSBuYW1lPSJXYXNoaW5ndG9uIENhcGl0YWxzIiBhbGlh
+        cz0iV1NIIiBpZD0iNDQxN2VlZGUtMGYyNC0xMWUyLTg1MjUtMThhOTA1NzY3
+        ZTQ0Ij4KICAgICAgICA8L2hvbWU+CiAgICAgICAgPGF3YXkgbmFtZT0iQ2Fy
+        b2xpbmEgSHVycmljYW5lcyIgYWxpYXM9IkNBUiIgaWQ9IjQ0MTgyYTlkLTBm
+        MjQtMTFlMi04NTI1LTE4YTkwNTc2N2U0NCI+CiAgICAgICAgPC9hd2F5Pgog
+        ICAgICAgIDxicm9hZGNhc3QgbmV0d29yaz0iQ1NOLURDIiBzYXRlbGxpdGU9
+        IjY0MiIvPgogICAgICA8L2dhbWU+CiAgICAgIDxnYW1lIGlkPSI2NWRhYmQ0
+        Yy01ZWM5LTRlN2EtYmRlNi0xYjEwNGZhNjFhMzkiIHN0YXR1cz0iY2xvc2Vk
+        IiBjb3ZlcmFnZT0iZnVsbCIgaG9tZV90ZWFtPSI0NDE2OWJiOS0wZjI0LTEx
+        ZTItODUyNS0xOGE5MDU3NjdlNDQiIGF3YXlfdGVhbT0iNDQxNTNkYTEtMGYy
+        NC0xMWUyLTg1MjUtMThhOTA1NzY3ZTQ0IiBzY2hlZHVsZWQ9IjIwMTMtMTAt
+        MTBUMjM6MzA6MDArMDA6MDAiPgogICAgICAgIDx2ZW51ZSBpZD0iYWI3ZGRm
+        NGQtNzdhYS00NGNmLWFhZjktOTU2NjIxOGFmMzhkIiBuYW1lPSJKb2UgTG91
+        aXMgQXJlbmEiIGNhcGFjaXR5PSIyMDA2NiIgYWRkcmVzcz0iNjAwIENpdmlj
+        IENlbnRlciBEcml2ZSIgY2l0eT0iRGV0cm9pdCIgc3RhdGU9Ik1JIiB6aXA9
+        IjQ4MjI2IiBjb3VudHJ5PSJVU0EiLz4KICAgICAgICA8aG9tZSBuYW1lPSJE
+        ZXRyb2l0IFJlZCBXaW5ncyIgYWxpYXM9IkRFVCIgaWQ9IjQ0MTY5YmI5LTBm
+        MjQtMTFlMi04NTI1LTE4YTkwNTc2N2U0NCI+CiAgICAgICAgPC9ob21lPgog
+        ICAgICAgIDxhd2F5IG5hbWU9IlBob2VuaXggQ295b3RlcyIgYWxpYXM9IlBI
+        WCIgaWQ9IjQ0MTUzZGExLTBmMjQtMTFlMi04NTI1LTE4YTkwNTc2N2U0NCI+
+        CiAgICAgICAgPC9hd2F5PgogICAgICAgIDxicm9hZGNhc3QgbmV0d29yaz0i
+        TkhMTiIgc2F0ZWxsaXRlPSIyMTUiLz4KICAgICAgPC9nYW1lPgogICAgICA8
+        Z2FtZSBpZD0iNjA5NDg5MzEtNDIyNy00MzlkLThkM2EtZjYwMGFmZTQ1Yjhl
+        IiBzdGF0dXM9ImNsb3NlZCIgY292ZXJhZ2U9ImZ1bGwiIGhvbWVfdGVhbT0i
+        NDQxN2QzY2ItMGYyNC0xMWUyLTg1MjUtMThhOTA1NzY3ZTQ0IiBhd2F5X3Rl
+        YW09IjQ0MTg0NjRkLTBmMjQtMTFlMi04NTI1LTE4YTkwNTc2N2U0NCIgc2No
+        ZWR1bGVkPSIyMDEzLTEwLTEwVDIzOjMwOjAwKzAwOjAwIj4KICAgICAgICA8
+        dmVudWUgaWQ9IjA1YWE0OWIyLWY3MmQtNGQ0Mi1hYjMwLWYyMTlkMzJlZDk3
+        YiIgbmFtZT0iVGFtcGEgQmF5IFRpbWVzIEZvcnVtIiBjYXBhY2l0eT0iMTky
+        MDQiIGFkZHJlc3M9IjQwMSBDaGFubmVsc2lkZSBEcml2ZSIgY2l0eT0iVGFt
+        cGEiIHN0YXRlPSJGTCIgemlwPSIzMzYwMiIgY291bnRyeT0iVVNBIi8+CiAg
+        ICAgICAgPGhvbWUgbmFtZT0iVGFtcGEgQmF5IExpZ2h0bmluZyIgYWxpYXM9
+        IlRCIiBpZD0iNDQxN2QzY2ItMGYyNC0xMWUyLTg1MjUtMThhOTA1NzY3ZTQ0
+        Ij4KICAgICAgICA8L2hvbWU+CiAgICAgICAgPGF3YXkgbmFtZT0iRmxvcmlk
+        YSBQYW50aGVycyIgYWxpYXM9IkZMQSIgaWQ9IjQ0MTg0NjRkLTBmMjQtMTFl
+        Mi04NTI1LTE4YTkwNTc2N2U0NCI+CiAgICAgICAgPC9hd2F5PgogICAgICAg
+        IDxicm9hZGNhc3QgbmV0d29yaz0iU1VOIiBzYXRlbGxpdGU9IjY1MyIvPgog
+        ICAgICA8L2dhbWU+CiAgICAgIDxnYW1lIGlkPSI3MTA4YzZiNy1lODNlLTRl
+        MjEtYWY3Mi04NmExNTM3MWY4ZDEiIHN0YXR1cz0iY2xvc2VkIiBjb3ZlcmFn
+        ZT0iZnVsbCIgaG9tZV90ZWFtPSI0NDE2NDNiNy0wZjI0LTExZTItODUyNS0x
+        OGE5MDU3NjdlNDQiIGF3YXlfdGVhbT0iNDQxNzMwYTktMGYyNC0xMWUyLTg1
+        MjUtMThhOTA1NzY3ZTQ0IiBzY2hlZHVsZWQ9IjIwMTMtMTAtMTFUMDA6MDA6
+        MDArMDA6MDAiPgogICAgICAgIDx2ZW51ZSBpZD0iY2M0ZTdhNjItZmFlOC00
+        ZWJiLTlhNjQtZjQzODQzODVkMGI2IiBuYW1lPSJCcmlkZ2VzdG9uZSBBcmVu
+        YSIgY2FwYWNpdHk9IjE3MTEzIiBhZGRyZXNzPSI1MDEgQnJvYWR3YXkiIGNp
+        dHk9Ik5hc2h2aWxsZSIgc3RhdGU9IlROIiB6aXA9IjM3MjAzIiBjb3VudHJ5
+        PSJVU0EiLz4KICAgICAgICA8aG9tZSBuYW1lPSJOYXNodmlsbGUgUHJlZGF0
+        b3JzIiBhbGlhcz0iTlNIIiBpZD0iNDQxNjQzYjctMGYyNC0xMWUyLTg1MjUt
+        MThhOTA1NzY3ZTQ0Ij4KICAgICAgICA8L2hvbWU+CiAgICAgICAgPGF3YXkg
+        bmFtZT0iVG9yb250byBNYXBsZSBMZWFmcyIgYWxpYXM9IlRPUiIgaWQ9IjQ0
+        MTczMGE5LTBmMjQtMTFlMi04NTI1LTE4YTkwNTc2N2U0NCI+CiAgICAgICAg
+        PC9hd2F5PgogICAgICAgIDxicm9hZGNhc3QgbmV0d29yaz0iRlMtVE4iIHNh
+        dGVsbGl0ZT0iNjQ0Ii8+CiAgICAgIDwvZ2FtZT4KICAgICAgPGdhbWUgaWQ9
+        ImU0MDg2MjFlLWU0ZGMtNGMzYS1hMjdmLTM2ZjFhY2NiZWZkMCIgc3RhdHVz
+        PSJjbG9zZWQiIGNvdmVyYWdlPSJmdWxsIiBob21lX3RlYW09IjQ0MTYwOTFj
+        LTBmMjQtMTFlMi04NTI1LTE4YTkwNTc2N2U0NCIgYXdheV90ZWFtPSI0NDE4
+        MGU1NS0wZjI0LTExZTItODUyNS0xOGE5MDU3NjdlNDQiIHNjaGVkdWxlZD0i
+        MjAxMy0xMC0xMVQwMDowMDowMCswMDowMCI+CiAgICAgICAgPHZlbnVlIGlk
+        PSI3ZTZmODA4Yi1lZmY4LTQyZmQtYThlMi1kMzUyMTlmNTY1YmQiIG5hbWU9
+        IlhjZWwgRW5lcmd5IENlbnRlciIgY2FwYWNpdHk9IjE4MDY0IiBhZGRyZXNz
+        PSIxOTkgVy4gS2VsbG9nZyBCbHZkLiIgY2l0eT0iU3QuIFBhdWwiIHN0YXRl
+        PSJNTiIgemlwPSI1NTEwMiIgY291bnRyeT0iVVNBIi8+CiAgICAgICAgPGhv
+        bWUgbmFtZT0iTWlubmVzb3RhIFdpbGQiIGFsaWFzPSJNSU4iIGlkPSI0NDE2
+        MDkxYy0wZjI0LTExZTItODUyNS0xOGE5MDU3NjdlNDQiPgogICAgICAgIDwv
+        aG9tZT4KICAgICAgICA8YXdheSBuYW1lPSJXaW5uaXBlZyBKZXRzIiBhbGlh
+        cz0iV1BHIiBpZD0iNDQxODBlNTUtMGYyNC0xMWUyLTg1MjUtMThhOTA1NzY3
+        ZTQ0Ij4KICAgICAgICA8L2F3YXk+CiAgICAgICAgPGJyb2FkY2FzdCBuZXR3
+        b3JrPSJGUy1OIiBzYXRlbGxpdGU9IjY2OCIvPgogICAgICA8L2dhbWU+CiAg
+        ICAgIDxnYW1lIGlkPSIzNzMxMzg0OS0wNzEzLTQyMWEtODIzMC00NGM3ZmYx
+        YzQ1MjMiIHN0YXR1cz0iY2xvc2VkIiBjb3ZlcmFnZT0iZnVsbCIgaG9tZV90
+        ZWFtPSI0NDE1ZWE2Yy0wZjI0LTExZTItODUyNS0xOGE5MDU3NjdlNDQiIGF3
+        YXlfdGVhbT0iNDQxNzEzYjctMGYyNC0xMWUyLTg1MjUtMThhOTA1NzY3ZTQ0
+        IiBzY2hlZHVsZWQ9IjIwMTMtMTAtMTFUMDE6MzA6MDArMDA6MDAiPgogICAg
+        ICAgIDx2ZW51ZSBpZD0iMGU1OGRmZDEtZGUyYS00MTQwLTg0M2YtZWY1OGE1
+        NTVmNDNmIiBuYW1lPSJSZXhhbGwgUGxhY2UiIGNhcGFjaXR5PSIxNjgzOSIg
+        YWRkcmVzcz0iNzQyNCAxMTh0aCBBdmUuIiBjaXR5PSJFZG1vbnRvbiIgc3Rh
+        dGU9IkFCIiB6aXA9IlQ1QiA0TTkiIGNvdW50cnk9IkNBTkFEQSIvPgogICAg
+        ICAgIDxob21lIG5hbWU9IkVkbW9udG9uIE9pbGVycyIgYWxpYXM9IkVETSIg
+        aWQ9IjQ0MTVlYTZjLTBmMjQtMTFlMi04NTI1LTE4YTkwNTc2N2U0NCI+CiAg
+        ICAgICAgPC9ob21lPgogICAgICAgIDxhd2F5IG5hbWU9Ik1vbnRyZWFsIENh
+        bmFkaWVucyIgYWxpYXM9Ik1UTCIgaWQ9IjQ0MTcxM2I3LTBmMjQtMTFlMi04
+        NTI1LTE4YTkwNTc2N2U0NCI+CiAgICAgICAgPC9hd2F5PgogICAgICA8L2dh
+        bWU+CiAgICAgIDxnYW1lIGlkPSJiZDRjYjNlNi1lNDliLTQ5NzgtOWExYi02
+        MzQzMTVhYTBiNDciIHN0YXR1cz0iY2xvc2VkIiBjb3ZlcmFnZT0iZnVsbCIg
+        aG9tZV90ZWFtPSI0NDE1YjBhNy0wZjI0LTExZTItODUyNS0xOGE5MDU3Njdl
+        NDQiIGF3YXlfdGVhbT0iNDQxNTU5MDktMGYyNC0xMWUyLTg1MjUtMThhOTA1
+        NzY3ZTQ0IiBzY2hlZHVsZWQ9IjIwMTMtMTAtMTFUMDI6MDA6MDArMDA6MDAi
+        PgogICAgICAgIDx2ZW51ZSBpZD0iM2I4ZTEwOTktODA1MC00MmM5LWI1NDUt
+        MmFhNzRlOTNiMmU4IiBuYW1lPSJSb2dlcnMgQXJlbmEiIGNhcGFjaXR5PSIx
+        ODg5MCIgYWRkcmVzcz0iODAwIEdyaWZmaXRocyBXYXkiIGNpdHk9IlZhbmNv
+        dXZlciIgc3RhdGU9IkJDIiB6aXA9IlY2QiA2RzEiIGNvdW50cnk9IkNBTkFE
+        QSIvPgogICAgICAgIDxob21lIG5hbWU9IlZhbmNvdXZlciBDYW51Y2tzIiBh
+        bGlhcz0iVkFOIiBpZD0iNDQxNWIwYTctMGYyNC0xMWUyLTg1MjUtMThhOTA1
+        NzY3ZTQ0Ij4KICAgICAgICA8L2hvbWU+CiAgICAgICAgPGF3YXkgbmFtZT0i
+        U2FuIEpvc2UgU2hhcmtzIiBhbGlhcz0iU0oiIGlkPSI0NDE1NTkwOS0wZjI0
+        LTExZTItODUyNS0xOGE5MDU3NjdlNDQiPgogICAgICAgIDwvYXdheT4KICAg
+        ICAgICA8YnJvYWRjYXN0IG5ldHdvcms9IkNTTi1DQSIgc2F0ZWxsaXRlPSI2
+        OTgiLz4KICAgICAgPC9nYW1lPgogICAgICA8Z2FtZSBpZD0iODA1MzdiNTAt
+        OGQ1ZC00NzRlLTk4YzctYThiMzgxYzFlZDQ4IiBzdGF0dXM9ImNsb3NlZCIg
+        Y292ZXJhZ2U9ImZ1bGwiIGhvbWVfdGVhbT0iNDQxODYyZGUtMGYyNC0xMWUy
+        LTg1MjUtMThhOTA1NzY3ZTQ0IiBhd2F5X3RlYW09IjQ0MTc4MWI5LTBmMjQt
+        MTFlMi04NTI1LTE4YTkwNTc2N2U0NCIgc2NoZWR1bGVkPSIyMDEzLTEwLTEx
+        VDAyOjAwOjAwKzAwOjAwIj4KICAgICAgICA8dmVudWUgaWQ9ImViMzg2NmE3
+        LTQxNjMtNDUxNy1iZDQyLWQyNGU4YzI1MjJmZSIgbmFtZT0iSG9uZGEgQ2Vu
+        dGVyIiBjYXBhY2l0eT0iMTcxNzQiIGFkZHJlc3M9IjI2OTUgRS4gS2F0ZWxs
+        YSBBdmUuIiBjaXR5PSJBbmFoZWltIiBzdGF0ZT0iQ0EiIHppcD0iOTI4MDYi
+        IGNvdW50cnk9IlVTQSIvPgogICAgICAgIDxob21lIG5hbWU9IkFuYWhlaW0g
+        RHVja3MiIGFsaWFzPSJBTkEiIGlkPSI0NDE4NjJkZS0wZjI0LTExZTItODUy
+        NS0xOGE5MDU3NjdlNDQiPgogICAgICAgIDwvaG9tZT4KICAgICAgICA8YXdh
+        eSBuYW1lPSJOZXcgWW9yayBSYW5nZXJzIiBhbGlhcz0iTllSIiBpZD0iNDQx
+        NzgxYjktMGYyNC0xMWUyLTg1MjUtMThhOTA1NzY3ZTQ0Ij4KICAgICAgICA8
+        L2F3YXk+CiAgICAgICAgPGJyb2FkY2FzdCBuZXR3b3JrPSJQUklNRSIgc2F0
+        ZWxsaXRlPSI2OTMiLz4KICAgICAgPC9nYW1lPgogICAgPC9nYW1lcz4KICA8
+        L2RhaWx5LXNjaGVkdWxlPgo8L2xlYWd1ZT4KPCEtLSBHZW5lcmF0aW9uIGVu
+        ZGVkIEAgMjAxNC0wMy0wMyAxNjo1OTozMSArMDAwMCAtLT4K
+    http_version: 
+  recorded_at: Wed, 01 Oct 2014 21:48:10 GMT
+- request:
+    method: get
+    uri: http://api.sportsdatallc.org/nhl-t3/games/2013/10/11/schedule.xml?api_key=gk32v4v48gsfy39pqvg2hp82
+    body:
+      encoding: US-ASCII
+      base64_string: ''
+    headers:
+      Accept:
+      - "*/*; q=0.5, application/xml"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 403
+      message: Forbidden
+    headers:
+      Content-Type:
+      - text/xml
+      Date:
+      - Wed, 01 Oct 2014 21:48:08 GMT
+      Retry-After:
+      - '1'
+      Server:
+      - Mashery Proxy
+      X-Mashery-Error-Code:
+      - ERR_403_DEVELOPER_OVER_QPS
+      X-Mashery-Responder:
+      - prod-j-worker-us-east-1e-46.mashery.com
+      Content-Length:
+      - '27'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      base64_string: |
+        PGgxPkRldmVsb3BlciBPdmVyIFFwczwvaDE+
+    http_version: 
+  recorded_at: Wed, 01 Oct 2014 21:48:10 GMT
+recorded_with: VCR 2.4.0
