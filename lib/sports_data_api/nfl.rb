@@ -22,6 +22,7 @@ module SportsDataApi
     autoload :Venue, File.join(DIR, 'venue')
     autoload :Broadcast, File.join(DIR, 'broadcast')
     autoload :Weather, File.join(DIR, 'weather')
+    autoload :GameSummary, File.join(DIR, 'game_summary')
 
     ##
     # Fetches NFL season schedule for a given year and season
@@ -86,6 +87,18 @@ module SportsDataApi
       response = self.response_xml(version, "/#{year}/#{season}/#{week}/schedule.xml")
 
       return Games.new(response.xpath('/games'))
+    end
+
+    ##
+    # fetches the game summary for one NFL game given a year, season, week,
+    # away team alias, and home team alias
+    def self.game_summary(year, season, week, away, home, version = DEFAULT_VERSION)
+      season = season.to_s.upcase.to_sym
+      raise SportsDataApi::Nfl::Exception.new("#{season} is not a valid season") unless Season.valid?(season)
+      season = season.to_s
+      response = self.response_xml(version, "/#{year}/#{season}/#{week}/#{away}/#{home}/summary.xml")
+
+      return GameSummary.new(response.xpath('game').first)
     end
 
     private
