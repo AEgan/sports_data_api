@@ -23,8 +23,6 @@ describe SportsDataApi::Nfl::Game, vcr: {
   context 'results from game summary fetch (home team)' do
     subject { game_summary.home }
     it '#alias' do
-      puts subject.class
-      puts subject[:alias]
       expect(subject[:alias]).to eq "CHI"
     end
     it '#name' do
