@@ -10,55 +10,30 @@ module SportsDataApi
         @id = xml[:id]
         @scheduled = Time.parse xml[:scheduled]
         @status = xml[:status]
-        @home = {}
-        @away = {}
-        # home
-        @home[:alias] = home_team[:id]
-        @home[:name] = home_team[:name]
-        @home[:market] = home_team[:market]
-        home_first_downs = home_team.xpath('first_downs').first
-        @home[:first_downs] = {
-          total: home_first_downs[:total].to_i,
-          passing: home_first_downs.xpath('passing').first.children.first.text.to_i,
-          rushing: home_first_downs.xpath('rushing').first.children.first.text.to_i,
-          penalty: home_first_downs.xpath('penalty').first.children.first.text.to_i,
-        }
-        third_down = home_team.xpath('third_down_efficiency').first
-        @home[:third_down] = {
-          attempts: third_down[:att].to_i,
-          converted: third_down[:converted].to_i,
-          percent: third_down[:pct].to_f,
-          passing: third_down.xpath('passing').first.children.first.text.to_i,
-          rushing: third_down.xpath('rushing').first.children.first.text.to_i,
-          penalty: third_down.xpath('penalty').first.children.first.text.to_i
-        }
+        @home = create_hash(home_team)
+        @away = create_hash(away_team)
+      end
 
-        fourth_down = home_team.xpath('fourth_down_efficiency').first
-        @home[:fourth_down] = {
-          attempts: fourth_down[:att].to_i,
-          converted: fourth_down[:converted].to_i,
-          percent: fourth_down[:pct].to_f,
-          passing: fourth_down.xpath('passing').first.children.first.text.to_i,
-          rushing: fourth_down.xpath('rushing').first.children.first.text.to_i,
-          penalty: fourth_down.xpath('penalty').first.children.first.text.to_i
-        }
+      private
+      def create_hash(team_xml)
+        the_hash = {}
+        the_hash[:alias] = team_xml[:id]
+        the_hash[:name] = team_xml[:name]
+        the_hash[:market] = team_xml[:market]
+        first_downs = team_xml.xpath('first_downs').first
+        the_hash[:first_downs] = first_down_hash(first_downs)
+        third_down = team_xml.xpath('third_down_efficiency').first
+        the_hash[:third_down] = x_down_efficiency(third_down)
+        fourth_down = team_xml.xpath('fourth_down_efficiency').first
+        the_hash[:fourth_down] = x_down_efficiency(fourth_down)
 
-        total_yards = home_team.xpath('total_yards').first
-        rushing_yards = home_team.xpath('rushing_yards').first
-        @home[:yards] = {
-          plays: total_yards[:plays].to_i,
-          yards: total_yards[:yds].to_f,
-          average: total_yards[:avg].to_f,
-          rushing: {
-            plays: rushing_yards[:plays].to_i,
-            yards: rushing_yards[:yds].to_i,
-            average: rushing_yards[:avg].to_f
-          }
-        }
+        total_yards = team_xml.xpath('total_yards').first
+        rushing_yards = team_xml.xpath('rushing_yards').first
+        the_hash[:yards] = yards_hash(total_yards, rushing_yards)
 
-        passing = home_team.xpath('passing').first
+        passing = team_xml.xpath('passing').first
         passing_yards = passing.xpath('yards').first
-        @home[:passing] = {
+        the_hash[:passing] = {
           attempts: passing[:att].to_i,
           completions: passing[:cmp].to_i,
           average: passing[:avg].to_f,
@@ -70,11 +45,11 @@ module SportsDataApi
             sack: passing_yards[:sack_yds].to_f
           }
         }
-        return_yards = home_team.xpath('return_yards').first
+        return_yards = team_xml.xpath('return_yards').first
         punt_return = return_yards.xpath('punt_return').first
         kickoff_return = return_yards.xpath('kickoff_return').first
         int_return = return_yards.xpath('int_return').first
-        @home[:returns] = {
+        the_hash[:returns] = {
           total: return_yards[:total].to_i,
           punt: {
             number: punt_return[:number].to_i,
@@ -90,35 +65,35 @@ module SportsDataApi
           }
         }
 
-        kickoffs = home_team.xpath('kickoffs').first
-        @home[:kickoffs] = {
+        kickoffs = team_xml.xpath('kickoffs').first
+        the_hash[:kickoffs] = {
           number: kickoffs[:number].to_i,
           endzone: kickoffs[:endzone].to_i,
           touchback: kickoffs[:tb].to_i
         }
 
-        punts = home_team.xpath('punts').first
-        @home[:punts] = {
+        punts = team_xml.xpath('punts').first
+        the_hash[:punts] = {
           number: punts[:number].to_i,
           average: punts[:avg].to_f,
           net_average: punts[:net_avg].to_f,
           blocked: punts[:blk].to_i
         }
 
-        penalties = home_team.xpath('penalties').first
-        @home[:penalties] = {
+        penalties = team_xml.xpath('penalties').first
+        the_hash[:penalties] = {
           number: penalties[:number].to_i,
           yards: penalties[:yds].to_i
         }
 
-        fumbles = home_team.xpath('fumbles').first
-        @home[:fumbles] = {
+        fumbles = team_xml.xpath('fumbles').first
+        the_hash[:fumbles] = {
           number: fumbles[:number].to_i,
           lost: fumbles[:lost].to_i
         }
 
-        touchdowns = home_team.xpath('touchdowns').first
-        @home[:touchdowns] = {
+        touchdowns = team_xml.xpath('touchdowns').first
+        the_hash[:touchdowns] = {
           number: touchdowns[:number].to_i,
           passing: touchdowns.xpath('passing').first.children.first.text.to_i,
           rushing: touchdowns.xpath('rushing').first.children.first.text.to_i,
@@ -129,217 +104,93 @@ module SportsDataApi
           field_goal: touchdowns.xpath('field_goal_return').first.children.first.text.to_i,
         }
 
-        extra_points = home_team.xpath('extra_points').first
+        extra_points = team_xml.xpath('extra_points').first
         kicking = extra_points.xpath('kicking').first
         two_points = extra_points.xpath('two_points').first
-        @home[:extra_points] = {
-          attempts: extra_points[:att].to_i,
-          made: extra_points[:made].to_i,
-          kicking: {
-            attempts: kicking[:att].to_i,
-            made: kicking[:made].to_i,
-            blocked: kicking[:blk].to_i
-          },
-          two_points: {
-            attempts: two_points[:att].to_i,
-            made: two_points[:made].to_i
-          }
-        }
+        the_hash[:extra_points] = extra_points_hash(extra_points)
 
-        field_goals = home_team.xpath('field_goals').first
-        @home[:field_goals] = {
-          attempts: field_goals[:att].to_i,
-          made: field_goals[:made].to_i,
-          blocked: field_goals[:blk].to_i
-        }
+        field_goals = team_xml.xpath('field_goals').first
+        the_hash[:field_goals] = kicking_hash(field_goals)
 
-        redzone_efficiency = home_team.xpath('redzone_efficiency').first
-        @home[:redzone_efficiency] = {
-          attempts: redzone_efficiency[:att].to_i,
-          touchdowns: redzone_efficiency[:td].to_i,
-          percentage: redzone_efficiency[:pct].to_f
-        }
+        redzone_efficiency = team_xml.xpath('redzone_efficiency').first
+        the_hash[:redzone_efficiency] = touchdown_efficiency(redzone_efficiency)
+        goal_efficiency = team_xml.xpath('goal_efficiency').first
+        the_hash[:goal_efficiency] = touchdown_efficiency(goal_efficiency)
 
-        goal_efficiency = home_team.xpath('goal_efficiency').first
-        @home[:goal_efficiency] = {
-          attempts: goal_efficiency[:att].to_i,
-          touchdowns: goal_efficiency[:td].to_i,
-          percentage: goal_efficiency[:pct].to_f
-        }
+        the_hash[:safeties] = team_xml.xpath('safeties').first[:number].to_i
 
-        @home[:safeties] = home_team.xpath('safeties').first[:number].to_i
+        the_hash[:turnovers] = team_xml.xpath('turnovers').first[:number].to_i
 
-        @home[:turnovers] = home_team.xpath('turnovers').first[:number].to_i
+        the_hash[:final_score] = team_xml.xpath('final_score').first.children.first.text.to_i
 
-        @home[:final_score] = home_team.xpath('final_score').first.children.first.text.to_i
+        the_hash[:possession_time] = team_xml.xpath('possession_time').first.children.first.text
 
-        @home[:possession_time] = home_team.xpath('possession_time').first.children.first.text
-
-        # away
-        @away[:alias] = away_team[:id]
-        @away[:name] = away_team[:name]
-        @away[:market] = away_team[:market]
-
-        away_first_down = away_team.xpath('first_downs').first
-        @away[:first_downs] = {
-          total: away_first_down[:total].to_i,
-          passing: away_first_down.xpath('passing').first.children.first.text.to_i,
-          rushing: away_first_down.xpath('rushing').first.children.first.text.to_i,
-          penalty: away_first_down.xpath('penalty').first.children.first.text.to_i,
-        }
-        third_down = away_team.xpath('third_down_efficiency').first
-        @away[:third_down] = {
-          attempts: third_down[:att].to_i,
-          converted: third_down[:converted].to_i,
-          percent: third_down[:pct].to_f,
-          passing: third_down.xpath('passing').first.children.first.text.to_i,
-          rushing: third_down.xpath('rushing').first.children.first.text.to_i,
-          penalty: third_down.xpath('penalty').first.children.first.text.to_i
-        }
-
-        fourth_down = away_team.xpath('fourth_down_efficiency').first
-        @away[:fourth_down] = {
-          attempts: fourth_down[:att].to_i,
-          converted: fourth_down[:converted].to_i,
-          percent: fourth_down[:pct].to_f,
-          passing: fourth_down.xpath('passing').first.children.first.text.to_i,
-          rushing: fourth_down.xpath('rushing').first.children.first.text.to_i,
-          penalty: fourth_down.xpath('penalty').first.children.first.text.to_i
-        }
-
-        total_yards = away_team.xpath('total_yards').first
-        rushing_yards = away_team.xpath('rushing_yards').first
-        @away[:yards] = {
-          plays: total_yards[:plays].to_i,
-          yards: total_yards[:yards].to_i,
-          average: total_yards[:avg].to_f,
-          rushing: {
-            plays: rushing_yards[:plays].to_i,
-            yards: rushing_yards[:yds].to_i,
-            average: rushing_yards[:avg].to_f
-          }
-        }
-
-        passing = home_team.xpath('passing').first
-        passing_yards = passing.xpath('yards').first
-        @away[:passing] = {
-          attempts: passing[:att].to_i,
-          completions: passing[:cpt].to_i,
-          average: passing[:avg].to_f,
-          int: passing[:int].to_i,
-          sacks: passing[:sack].to_i,
-          yards: {
-            net: passing_yards[:net_yds].to_f,
-            gross: passing_yards[:gross_yds].to_f,
-            sack: passing_yards[:sack_yds].to_f
-          }
-        }
-        return_yards = away_team.xpath('return_yards').first
-        punt_return = return_yards.xpath('punt_return').first
-        kickoff_return = return_yards.xpath('kickoff_return').first
-        int_return = return_yards.xpath('int_return').first
-        @away[:returns] = {
-          total: return_yards[:total].to_i,
-          punt: {
-            number: punt_return[:number].to_i,
-            yards: punt_return[:yds].to_i
-          },
-          kickoff: {
-            number: kickoff_return[:number].to_i,
-            yards: kickoff_return[:yds].to_i
-          },
-          interception: {
-            number: int_return[:number].to_i,
-            yards: int_return[:yds].to_i
-          }
-        }
-
-        kickoffs = away_team.xpath('kickoffs').first
-        @away[:kickoffs] = {
-          number: kickoffs[:number].to_i,
-          endzone: kickoffs[:endzone].to_i,
-          touchback: kickoffs[:tb].to_i
-        }
-
-        punts = away_team.xpath('punts').first
-        @away[:punts] = {
-          number: punts[:number].to_i,
-          average: punts[:avg].to_f,
-          net_average: punts[:net_avg].to_f,
-          blocked: punts[:blk].to_i
-        }
-
-        penalties = away_team.xpath('penalties').first
-        @away[:penalties] = {
-          number: penalties[:number].to_i,
-          yards: penalties[:yds].to_i
-        }
-
-        fumbles = away_team.xpath('fumbles').first
-        @away[:fumbles] = {
-          number: fumbles[:number].to_i,
-          lost: fumbles[:lost].to_i
-        }
-
-        touchdowns = away_team.xpath('touchdowns').first
-        @away[:touchdowns] = {
-          number: touchdowns[:number].to_i,
-          passing: touchdowns.xpath('passing').first.children.first.text.to_i,
-          rushing: touchdowns.xpath('rushing').first.children.first.text.to_i,
-          interception: touchdowns.xpath('interception').first.children.first.text.to_i,
-          fumble: touchdowns.xpath('fumble_return').first.children.first.text.to_i,
-          punt: touchdowns.xpath('punt_return').first.children.first.text.to_i,
-          kickoff: touchdowns.xpath('kickoff_return').first.children.first.text.to_i,
-          field_goal: touchdowns.xpath('field_goal_return').first.children.first.text.to_i,
-        }
-
-        extra_points = away_team.xpath('extra_points').first
-        kicking = extra_points.xpath('kicking').first
-        two_points = extra_points.xpath('two_points').first
-        @away[:extra_points] = {
-          attempts: extra_points[:att].to_i,
-          made: extra_points[:made].to_i,
-          kicking: {
-            attempts: kicking[:att].to_i,
-            made: kicking[:made].to_i,
-            blocked: kicking[:blk].to_i
-          },
-          two_points: {
-            attempts: two_points[:att].to_i,
-            made: two_points[:made].to_i
-          }
-        }
-
-        field_goals = away_team.xpath('field_goals').first
-        @away[:field_goals] = {
-          attempts: field_goals[:att].to_i,
-          made: field_goals[:made].to_i,
-          blocked: field_goals[:blk].to_i
-        }
-
-        redzone_efficiency = away_team.xpath('redzone_efficiency').first
-        @away[:redzone_efficiency] = {
-          attempts: redzone_efficiency[:att].to_i,
-          touchdowns: redzone_efficiency[:td].to_i,
-          percentage: redzone_efficiency[:pct].to_f
-        }
-
-        goal_efficiency = away_team.xpath('goal_efficiency').first
-        @away[:goal_efficiency] = {
-          attempts: goal_efficiency[:att].to_i,
-          touchdowns: goal_efficiency[:td].to_i,
-          percentage: goal_efficiency[:pct].to_f
-        }
-
-        @away[:safeties] = away_team.xpath('safeties').first[:number].to_i
-
-        @away[:turnovers] = away_team.xpath('turnovers').first[:number].to_i
-
-        @away[:final_score] = away_team.xpath('final_score').first.children.first.text.to_i
-
-        @away[:possession_time] = away_team.xpath('possession_time').first.children.first.text
+        the_hash
       end
 
+      def passing_rushing_penalty_children(hash, xml)
+        %w(passing rushing penalty).each do |stat|
+          hash[stat.to_sym] = xml.xpath(stat).first.children.first.text.to_i
+        end
+      end
+
+      def first_down_hash(first_down_xml)
+        first_downs = {}
+        first_downs[:total] = first_down_xml[:total].to_i
+        passing_rushing_penalty_children(first_downs, first_down_xml)
+        first_downs
+      end
+
+      def x_down_efficiency(x_down_xml)
+        x_down = {}
+        x_down[:attempts] = x_down_xml[:att].to_i
+        x_down[:converted] = x_down_xml[:converted].to_i
+        x_down[:percent] = x_down_xml[:pct].to_f
+        passing_rushing_penalty_children(x_down, x_down_xml)
+        x_down
+      end
+
+      def touchdown_efficiency(stats_xml)
+        {
+          attempts: stats_xml[:att].to_i,
+          touchdowns: stats_xml[:td].to_i,
+          percentage: stats_xml[:pct].to_f
+        }
+      end
+
+      def kicking_hash(stats_xml)
+        attempts_made(stats_xml).merge({blocked: stats_xml[:blk].to_i})
+      end
+
+      def attempts_made(stats_xml)
+        {
+          attempts: stats_xml[:att].to_i,
+          made: stats_xml[:made].to_i
+        }
+      end
+
+      def extra_points_hash(extra_points_xml)
+        kicking = extra_points_xml.xpath('kicking').first
+        two_points = extra_points_xml.xpath('two_points').first
+        overall = attempts_made(extra_points_xml)
+        overall[:kicking] = kicking_hash(kicking)
+        overall[:two_points] = attempts_made(two_points)
+        overall
+      end
+
+      def yards_hash(total_xml, rushing_xml)
+        overall = plays_yards_average(total_xml)
+        overall[:rushing] = plays_yards_average(rushing_xml)
+        overall
+      end
+
+      def plays_yards_average(stats_xml)
+        {
+          plays: stats_xml[:plays].to_i,
+          yards: stats_xml[:yds].to_f,
+          average: stats_xml[:avg].to_f,
+        }
+      end
     end
   end
 end
