@@ -42,6 +42,7 @@ module SportsDataApi
           team[stat.to_sym] = record_stats(team_xml.xpath(stat).first)
         end
         team[:points] = key_value_integer_map(team_xml.xpath('points').first)
+        team[:touchdowns] = key_value_integer_map(team_xml.xpath('touchdowns').first)
         team[:streak] = streak_hash(team_xml.xpath('streak').first)
         team
       end
