@@ -23,6 +23,7 @@ module SportsDataApi
     autoload :Broadcast, File.join(DIR, 'broadcast')
     autoload :Weather, File.join(DIR, 'weather')
     autoload :GameSummary, File.join(DIR, 'game_summary')
+    autoload :Standings, File.join(DIR, 'standings')
 
     ##
     # Fetches NFL season schedule for a given year and season
@@ -99,6 +100,17 @@ module SportsDataApi
       response = self.response_xml(version, "/#{year}/#{season}/#{week}/#{away}/#{home}/summary.xml")
 
       return GameSummary.new(response.xpath('game').first)
+    end
+    
+    ##
+    # Fetches NFL standings for the divisions and conferences
+    def self.standings(year, season, version = DEFAULT_VERSION)
+      season = season.to_s.upcase.to_sym
+      raise SportsDataApi::Nfl::Exception.new("#{season} is not a valid season") unless Season.valid?(season)
+
+      response = self.response_xml(version, "/teams/#{year}/#{season}/standings.xml")
+
+      return Standings.new(response.xpath('standings').first)
     end
 
     private
