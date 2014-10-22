@@ -18,6 +18,7 @@ module SportsDataApi
   autoload :Venue, File.join(DIR, 'venue')
   autoload :Broadcast, File.join(DIR, 'broadcast')
   autoload :Player, File.join(DIR, 'player')
+  autoload :Standings, File.join(DIR, 'standings')
 
   ##
   # Fetches NHL season schedule for a given year and season
@@ -56,6 +57,17 @@ module SportsDataApi
   def self.game_summary(game, version = DEFAULT_VERSION)
     response = self.response_xml(version, "/games/#{game}/summary.xml")
     Game.new(xml: response.xpath("/game"))
+  end
+
+  ##
+  # Fetches NFL standings for the divisions and conferences
+  def self.standings(year, season, version = DEFAULT_VERSION)
+    season = season.to_s.upcase.to_sym
+    raise SportsDataApi::Nhl::Exception.new("#{season} is not a valid season") unless Season.valid?(season)
+
+    response = self.response_xml(version, "/seasontd/#{year}/#{season}/standings.xml")
+
+    return Standings.new(response.xpath('league/season').first)
   end
 
   private
