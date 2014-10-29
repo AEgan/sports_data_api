@@ -19,10 +19,35 @@ describe SportsDataApi::Nfl::Standings, vcr: {
     its(:type) { should eq "REG" }
     its(:nfc) { should be_an_instance_of(Hash) }
     its(:afc) { should be_an_instance_of(Hash) }
+    it '#afc' do
+      expect(subject["AFC"]).to be_an_instance_of(Hash)
+      expect(subject["afc"]).to be_an_instance_of(Hash)
+      expect(subject["AFC"][:name]).to eq "AFC"
+      expect(subject["afc"][:name]).to eq "AFC"
+    end
+    it '#nfc' do
+      expect(subject["NFC"]).to be_an_instance_of(Hash)
+      expect(subject["nfc"]).to be_an_instance_of(Hash)
+      expect(subject["NFC"][:name]).to eq "NFC"
+      expect(subject["nfc"][:name]).to eq "NFC"
+    end
+    it '#error' do
+      expect { subject["notreal"] }.to raise_error(SportsDataApi::Nfl::Exception)
+    end
   end
   context 'results from standings : AFC' do
     subject { standings.afc }
 
+    it '#AFC_EAST' do
+      expect(subject["AFC_EAST"]).to be_an_instance_of(Hash)
+      expect(subject["AFC_SOUTH"]).to be_an_instance_of(Hash)
+      expect(subject["AFC_NORTH"]).to be_an_instance_of(Hash)
+      expect(subject["AFC_WEST"]).to be_an_instance_of(Hash)
+      expect(subject["AFC_EAST"][:name]).to eq "AFC East"
+      expect(subject["AFC_SOUTH"][:name]).to eq "AFC South"
+      expect(subject["AFC_NORTH"][:name]).to eq "AFC North"
+      expect(subject["AFC_WEST"][:name]).to eq "AFC West"
+    end
     it '#name' do
       expect(subject[:name]).to eq "AFC"
     end

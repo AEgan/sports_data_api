@@ -10,13 +10,28 @@ module SportsDataApi
         @nfc = create_conference(conferences.last)
       end
 
+      ##
+      # method to get a conference like the object itself is a hash
+      def [](conference)
+        conference = conference.upcase
+        if(conference.eql?("NFC"))
+          return @nfc
+        elsif(conference.eql?("AFC"))
+          return @afc
+        else
+          raise SportsDataApi::Nfl::Exception.new("#{conference} is not a valid conference")
+        end
+      end
+
       private
       def create_conference(conference_xml)
         conference = Hash.new
         conference[:name] = conference_xml[:name]
         conference[:divisions] = Array.new
         conference_xml.xpath('division').each do |division|
-          conference[:divisions] << create_division(division)
+          division_hash = create_division(division)
+          conference[division_hash[:id]] = division_hash
+          conference[:divisions] << division_hash
         end
         conference
       end
