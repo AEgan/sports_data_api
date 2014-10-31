@@ -35,6 +35,10 @@ describe SportsDataApi::Nhl::Standings, vcr: {
       expect(subject[:divisions].first[:alias]).to eq "ATLANTIC"
       expect(subject[:divisions].first[:teams]).to be_an_instance_of(Array)
       expect(subject[:divisions].first[:teams].length).to eq 8
+      expect(subject["ATLANTIC"]).to be_an_instance_of Hash
+      expect(subject["METROPOLITAN"]).to be_an_instance_of Hash
+      expect(subject["ATLANTIC"][:name]).to eq "Atlantic"
+      expect(subject["METROPOLITAN"][:name]).to eq "Metropolitan"
     end
   end
   describe '#blues' do
