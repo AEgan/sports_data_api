@@ -27,11 +27,10 @@ module SportsDataApi
       def create_conference(conference_xml)
         conference = Hash.new
         conference[:name] = conference_xml[:name]
-        conference[:divisions] = Array.new
+        conference[:divisions] = Hash.new
         conference_xml.xpath('division').each do |division|
           division_hash = create_division(division)
-          conference[division_hash[:id]] = division_hash
-          conference[:divisions] << division_hash
+          conference[:divisions][division_hash[:id]] = division_hash
         end
         conference
       end

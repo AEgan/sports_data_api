@@ -10,8 +10,8 @@ describe SportsDataApi::Nfl::Standings, vcr: {
     SportsDataApi.set_access_level(:nfl, 't')
     SportsDataApi::Nfl.standings(2013, :REG)
   end
-  let(:pats) { standings.afc[:divisions].first[:teams].first }
-  let(:eagles) { standings.nfc[:divisions].first[:teams].first }
+  let(:pats) { standings.afc[:divisions]["AFC_EAST"][:teams].first }
+  let(:eagles) { standings.nfc[:divisions]["NFC_EAST"][:teams].first }
   context 'results from standings fetch' do
     subject { standings }
     it { should be_an_instance_of(SportsDataApi::Nfl::Standings) }
@@ -39,27 +39,27 @@ describe SportsDataApi::Nfl::Standings, vcr: {
     subject { standings.afc }
 
     it '#AFC_EAST' do
-      expect(subject["AFC_EAST"]).to be_an_instance_of(Hash)
-      expect(subject["AFC_SOUTH"]).to be_an_instance_of(Hash)
-      expect(subject["AFC_NORTH"]).to be_an_instance_of(Hash)
-      expect(subject["AFC_WEST"]).to be_an_instance_of(Hash)
-      expect(subject["AFC_EAST"][:name]).to eq "AFC East"
-      expect(subject["AFC_SOUTH"][:name]).to eq "AFC South"
-      expect(subject["AFC_NORTH"][:name]).to eq "AFC North"
-      expect(subject["AFC_WEST"][:name]).to eq "AFC West"
+      expect(subject[:divisions]["AFC_EAST"]).to be_an_instance_of(Hash)
+      expect(subject[:divisions]["AFC_SOUTH"]).to be_an_instance_of(Hash)
+      expect(subject[:divisions]["AFC_NORTH"]).to be_an_instance_of(Hash)
+      expect(subject[:divisions]["AFC_WEST"]).to be_an_instance_of(Hash)
+      expect(subject[:divisions]["AFC_EAST"][:name]).to eq "AFC East"
+      expect(subject[:divisions]["AFC_SOUTH"][:name]).to eq "AFC South"
+      expect(subject[:divisions]["AFC_NORTH"][:name]).to eq "AFC North"
+      expect(subject[:divisions]["AFC_WEST"][:name]).to eq "AFC West"
     end
     it '#name' do
       expect(subject[:name]).to eq "AFC"
     end
     it '#conferences' do
-      expect(subject[:divisions]).to be_an_instance_of(Array)
+      expect(subject[:divisions]).to be_an_instance_of(Hash)
       expect(subject[:divisions].length).to eq 4
     end
     it '#divisions' do
-      expect(subject[:divisions].first[:name]).to eq "AFC East"
-      expect(subject[:divisions].first[:id]).to eq "AFC_EAST"
-      expect(subject[:divisions].first[:teams]).to be_an_instance_of(Array)
-      expect(subject[:divisions].first[:teams].length).to eq 4
+      expect(subject[:divisions]["AFC_EAST"][:name]).to eq "AFC East"
+      expect(subject[:divisions]["AFC_EAST"][:id]).to eq "AFC_EAST"
+      expect(subject[:divisions]["AFC_EAST"][:teams]).to be_an_instance_of(Array)
+      expect(subject[:divisions]["AFC_EAST"][:teams].length).to eq 4
     end
   end
   describe '#pats' do
