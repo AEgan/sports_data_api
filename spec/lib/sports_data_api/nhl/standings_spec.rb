@@ -10,7 +10,7 @@ describe SportsDataApi::Nhl::Standings, vcr: {
     SportsDataApi.set_access_level(:nhl, 't')
     SportsDataApi::Nhl.standings(2013, :REG)
   end
-  let(:blues) { standings.west[:divisions].first[:teams].first }
+  let(:blues) { standings.west[:divisions]["CENTRAL"][:teams].first }
   context 'results from standings fetch' do
     subject { standings }
     it { should be_an_instance_of(SportsDataApi::Nhl::Standings) }
@@ -27,18 +27,15 @@ describe SportsDataApi::Nhl::Standings, vcr: {
       expect(subject[:alias]).to eq "EASTERN"
     end
     it '#conferences' do
-      expect(subject[:divisions]).to be_an_instance_of(Array)
+      expect(subject[:divisions]).to be_an_instance_of(Hash)
       expect(subject[:divisions].length).to eq 2
     end
     it '#divisions' do
-      expect(subject[:divisions].first[:name]).to eq "Atlantic"
-      expect(subject[:divisions].first[:alias]).to eq "ATLANTIC"
-      expect(subject[:divisions].first[:teams]).to be_an_instance_of(Array)
-      expect(subject[:divisions].first[:teams].length).to eq 8
-      expect(subject["ATLANTIC"]).to be_an_instance_of Hash
-      expect(subject["METROPOLITAN"]).to be_an_instance_of Hash
-      expect(subject["ATLANTIC"][:name]).to eq "Atlantic"
-      expect(subject["METROPOLITAN"][:name]).to eq "Metropolitan"
+      expect(subject[:divisions]["ATLANTIC"][:name]).to eq "Atlantic"
+      expect(subject[:divisions]["ATLANTIC"][:alias]).to eq "ATLANTIC"
+      expect(subject[:divisions]["ATLANTIC"][:teams]).to be_an_instance_of(Array)
+      expect(subject[:divisions]["ATLANTIC"][:teams].length).to eq 8
+      expect(subject[:divisions]["ATLANTIC"]).to be_an_instance_of Hash
     end
   end
   describe '#blues' do
