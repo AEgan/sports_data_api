@@ -21,21 +21,28 @@ module SportsDataApi
         shorthanded_xml = total_xml.xpath('shorthanded').first
         even_strength_xml = total_xml.xpath('evenstrength').first
         penalty_shots_xml = total_xml.xpath('penalty').first
-        team_hash[:total] = create_total_stats(total_xml, powerplay_xml, shorthanded_xml, even_strength_xml, penalty_shots_xml)
-        team_hash[:goaltending] = Hash.new
+        team_hash[:statistics] = create_stats_hash(total_xml, powerplay_xml, shorthanded_xml, even_strength_xml, penalty_shots_xml)
+        goaltending_xml = team_xml.xpath('team_records/overall/goaltending').first
+        total_xml = goaltending_xml.xpath('total').first
+        powerplay_xml = total_xml.xpath('powerplay').first
+        shorthanded_xml = total_xml.xpath('shorthanded').first
+        even_strength_xml = total_xml.xpath('evenstrength').first
+        penalty_shots_xml = total_xml.xpath('penalty').first
+        team_hash[:goaltending] = create_stats_hash(total_xml, powerplay_xml, shorthanded_xml, even_strength_xml, penalty_shots_xml)
         team_hash[:shootouts] = map_attributes_to_hash(team_xml.xpath('team_records/overall/shootout').first)
         team_hash
       end
 
       ##
       # Creates the hash for a team's total stats
-      def create_total_stats(total_xml, powerplay_xml, shorthanded_xml, even_strength_xml, penalty_shots_xml)
-        total_hash = map_attributes_to_hash(total_xml.attributes)
-        total_hash[:powerplay] = map_attributes_to_hash(powerplay_xml)
-        total_hash[:shorthanded] = map_attributes_to_hash(shorthanded_xml)
-        total_hash[:even_strength] = map_attributes_to_hash(even_strength_xml)
-        total_hash[:penalty_shots] = map_attributes_to_hash(penalty_shots_xml)
-        total_hash
+      def create_stats_hash(total_xml, powerplay_xml, shorthanded_xml, even_strength_xml, penalty_shots_xml)
+        statistics_hash = Hash.new
+        statistics_hash[:total] = map_attributes_to_hash(total_xml.attributes)
+        statistics_hash[:powerplay] = map_attributes_to_hash(powerplay_xml)
+        statistics_hash[:shorthanded] = map_attributes_to_hash(shorthanded_xml)
+        statistics_hash[:even_strength] = map_attributes_to_hash(even_strength_xml)
+        statistics_hash[:penalty_shots] = map_attributes_to_hash(penalty_shots_xml)
+        statistics_hash
       end
 
       def map_attributes_to_hash(attributes)
