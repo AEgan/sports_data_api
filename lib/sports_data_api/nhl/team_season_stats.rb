@@ -23,6 +23,7 @@ module SportsDataApi
         penalty_shots_xml = total_xml.xpath('penalty').first
         team_hash[:total] = create_total_stats(total_xml, powerplay_xml, shorthanded_xml, even_strength_xml, penalty_shots_xml)
         team_hash[:goaltending] = Hash.new
+        team_hash[:shootouts] = map_attributes_to_hash(team_xml.xpath('team_records/overall/shootout').first)
         team_hash
       end
 

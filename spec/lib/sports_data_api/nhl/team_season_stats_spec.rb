@@ -12,6 +12,8 @@ describe SportsDataApi::Nhl::TeamSeasonStats, vcr: {
   let(:team_stats) { SportsDataApi::Nhl.team_season_stats("44179d47-0f24-11e2-8525-18a905767e44", 2013, "REG") }
   let(:flyers) { team_stats.team }
   let(:total) { flyers[:total] }
+  let(:shootouts) { flyers[:shootouts] }
+  let(:goaltending) { flyers[:goaltending] }
   context "team stats attributes" do
     subject { team_stats }
     describe 'meta methods' do
@@ -33,6 +35,7 @@ describe SportsDataApi::Nhl::TeamSeasonStats, vcr: {
       it { subject[:market].should eq "Philadelphia" }
       it { subject[:total].kind_of?(Hash).should be true  }
       it { subject[:goaltending].kind_of?(Hash).should be true  }
+      it { subject[:shootouts].kind_of?(Hash).should be true  }
     end
   end
   context "total stats" do
@@ -97,6 +100,18 @@ describe SportsDataApi::Nhl::TeamSeasonStats, vcr: {
         it { subject[:penalty_shots][:shots].should eq 3 }
         it { subject[:penalty_shots][:goals].should eq 0 }
         it { subject[:penalty_shots][:missed_shots].should eq 0 }
+      end
+    end
+    context "shootouts" do
+      subject { shootouts }
+      describe "shootout stats" do
+        it { subject[:shots].should eq 32 }
+        it { subject[:missed_shots].should eq 7 }
+        it { subject[:goals].should eq 11 }
+        it { subject[:shots_against].should eq 41 }
+        it { subject[:goals_against].should eq 17 }
+        it { subject[:saves].should eq 19 }
+        it { subject[:saves_pct].should eq 0.463 }
       end
     end
   end
