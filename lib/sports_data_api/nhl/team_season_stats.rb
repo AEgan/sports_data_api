@@ -1,16 +1,36 @@
 module SportsDataApi
   module Nhl
     class TeamSeasonStats
-      attr_reader :year, :season, :team
+      attr_reader :year, :season, :team, :opponents
       ##
       # Creates a new nhl TeamSeasonStats object
       def initialize(xml)
         @year = xml['year']
         @season = xml['type']
         @team = create_team(xml.xpath('team').first)
+        @opponents = create_opponents(xml.xpath('team/team_records/opponents').first)
       end
 
       private
+      def create_opponents(opponent_xml)
+        opponent_hash = Hash.new
+        stats_xml = opponent_xml.xpath('statistics').first
+        total_xml = stats_xml.xpath('total').first
+        powerplay_xml = total_xml.xpath('powerplay').first
+        shorthanded_xml = total_xml.xpath('shorthanded').first
+        even_strength_xml = total_xml.xpath('evenstrength').first
+        penalty_shots_xml = total_xml.xpath('penalty').first
+        opponent_hash[:statistics] = create_stats_hash(total_xml, powerplay_xml, shorthanded_xml, even_strength_xml, penalty_shots_xml)
+        goaltending_xml = opponent_xml.xpath('goaltending').first
+        total_xml = goaltending_xml.xpath('total').first
+        powerplay_xml = total_xml.xpath('powerplay').first
+        shorthanded_xml = total_xml.xpath('shorthanded').first
+        even_strength_xml = total_xml.xpath('evenstrength').first
+        penalty_shots_xml = total_xml.xpath('penalty').first
+        opponent_hash[:goaltending] = create_stats_hash(total_xml, powerplay_xml, shorthanded_xml, even_strength_xml, penalty_shots_xml)
+        opponent_hash[:shootouts] = map_attributes_to_hash(opponent_xml.xpath('shootout').first)
+        opponent_hash
+      end
       ##
       # Creates the team hash for all team information
       def create_team(team_xml)

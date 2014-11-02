@@ -14,10 +14,13 @@ describe SportsDataApi::Nhl::TeamSeasonStats, vcr: {
   let(:statistics) { flyers[:statistics] }
   let(:shootouts) { flyers[:shootouts] }
   let(:goaltending) { flyers[:goaltending] }
+  let(:opponents) { team_stats.opponents }
+  let(:opponents_stats) { opponents[:statistics] }
   context "team stats attributes" do
     subject { team_stats }
     describe 'meta methods' do
       it { should respond_to :team }
+      it { should respond_to :opponents }
       it { should respond_to :year }
       it { should respond_to :season }
       it { subject.team.kind_of?(Hash).should be true }
@@ -144,6 +147,82 @@ describe SportsDataApi::Nhl::TeamSeasonStats, vcr: {
       it { subject[:penalty_shots][:goals_against].should eq 0 }
       it { subject[:penalty_shots][:saves].should eq 1 }
       it { subject[:penalty_shots][:saves_pct].should eq 1.0 }
+    end
+  end
+  context "opponents" do
+    subject { opponents }
+    describe "opponents info" do
+      it { subject[:statistics].kind_of?(Hash).should be true  }
+      it { subject[:goaltending].kind_of?(Hash).should be true  }
+      it { subject[:shootouts].kind_of?(Hash).should be true  }
+    end
+  end
+  context "opponents stats" do
+    subject { opponents_stats }
+    describe "stats content" do
+      it { subject[:total].kind_of?(Hash).should be true }
+      it { subject[:powerplay].kind_of?(Hash).should be true }
+      it { subject[:shorthanded].kind_of?(Hash).should be true }
+      it { subject[:even_strength].kind_of?(Hash).should be true }
+      it { subject[:penalty_shots].kind_of?(Hash).should be true }
+    end
+    describe "opponents total stats" do
+      it { subject[:total][:games_played].should eq 82 }
+      it { subject[:total][:goals].should eq 227 }
+      it { subject[:total][:assists].should eq 393 }
+      it { subject[:total][:penalties].should eq 398 }
+      it { subject[:total][:penalty_minutes].should eq 1102 }
+      it { subject[:total][:team_penalties].should eq 3 }
+      it { subject[:total][:team_penalty_minutes].should eq 6 }
+      it { subject[:total][:shots].should eq 2508 }
+      it { subject[:total][:blocked_att].should eq 1200 }
+      it { subject[:total][:missed_shots].should eq 914 }
+      it { subject[:total][:hits].should eq 2092 }
+      it { subject[:total][:giveaways].should eq 707 }
+      it { subject[:total][:takeaways].should eq 507 }
+      it { subject[:total][:blocked_shots].should eq 1281 }
+      it { subject[:total][:faceoffs_won].should eq 2507 }
+      it { subject[:total][:faceoffs_lost].should eq 2506 }
+      it { subject[:total][:powerplays].should eq 285 }
+      it { subject[:total][:faceoffs].should eq 5013 }
+      it { subject[:total][:faceoff_win_pct].should eq 50.0 }
+      it { subject[:total][:shooting_pct].should eq 9.1 }
+      it { subject[:total][:points].should eq 620 }
+    end
+    describe "opponents powerplay stats" do
+      it { subject[:powerplay][:faceoffs_won].should eq 300 }
+      it { subject[:powerplay][:faceoffs_lost].should eq 292 }
+      it { subject[:powerplay][:shots].should eq 390 }
+      it { subject[:powerplay][:goals].should eq 48 }
+      it { subject[:powerplay][:missed_shots].should eq 163 }
+      it { subject[:powerplay][:assists].should eq 94 }
+      it { subject[:powerplay][:faceoff_win_pct].should eq 50.7 }
+      it { subject[:powerplay][:faceoffs].should eq 592 }
+    end
+    describe "opponents shorthanded stats" do
+      it { subject[:shorthanded][:faceoffs_won].should eq 260 }
+      it { subject[:shorthanded][:faceoffs_lost].should eq 288 }
+      it { subject[:shorthanded][:shots].should eq 72 }
+      it { subject[:shorthanded][:goals].should eq 11 }
+      it { subject[:shorthanded][:missed_shots].should eq 21 }
+      it { subject[:shorthanded][:assists].should eq 15 }
+      it { subject[:shorthanded][:faceoffs].should eq 548 }
+      it { subject[:shorthanded][:faceoff_win_pct].should eq 47.4 }
+    end
+    describe "opponents even strength stats" do
+      it { subject[:even_strength][:faceoff_win_pct].should eq 50.3 }
+      it { subject[:even_strength][:missed_shots].should eq 730 }
+      it { subject[:even_strength][:goals].should eq 168 }
+      it { subject[:even_strength][:faceoffs_won].should eq 1947 }
+      it { subject[:even_strength][:shots].should eq 2046 }
+      it { subject[:even_strength][:faceoffs].should eq 3873 }
+      it { subject[:even_strength][:faceoffs_lost].should eq 1926 }
+      it { subject[:even_strength][:assists].should eq 284 }
+    end
+    describe "opponents penalty shot stats" do
+      it { subject[:penalty_shots][:shots].should eq 1 }
+      it { subject[:penalty_shots][:goals].should eq 0 }
+      it { subject[:penalty_shots][:missed_shots].should eq 0 }
     end
   end
 end
