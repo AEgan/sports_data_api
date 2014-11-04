@@ -38,11 +38,7 @@ module SportsDataApi
       # Creates the hitting hash
       def create_hitting(hitting_xml)
         hitting = map_attributes_to_hash(hitting_xml.attributes)
-        hitting[:onbase] = map_attributes_to_hash(hitting_xml.xpath('onbase').first)
-        hitting[:runs] = map_attributes_to_hash(hitting_xml.xpath('runs').first)
-        hitting[:outcome] = map_attributes_to_hash(hitting_xml.xpath('outcome').first)
-        hitting[:outs] = map_attributes_to_hash(hitting_xml.xpath('outs').first)
-        hitting[:steal] = map_attributes_to_hash(hitting_xml.xpath('steal').first)
+        add_common_attributes(hitting, hitting_xml)
         hitting
       end
 
@@ -50,13 +46,17 @@ module SportsDataApi
       # Creates the pitching hash
       def create_pitching(pitching_xml)
         pitching = map_attributes_to_hash(pitching_xml.attributes)
-        pitching[:onbase] = map_attributes_to_hash(pitching_xml.xpath('onbase').first)
-        pitching[:runs] = map_attributes_to_hash(pitching_xml.xpath('runs').first)
-        pitching[:outcome] = map_attributes_to_hash(pitching_xml.xpath('outcome').first)
-        pitching[:outs] = map_attributes_to_hash(pitching_xml.xpath('outs').first)
-        pitching[:steal] = map_attributes_to_hash(pitching_xml.xpath('steal').first)
         pitching[:games] = map_attributes_to_hash(pitching_xml.xpath('games').first)
+        add_common_attributes(pitching, pitching_xml)
         pitching
+      end
+
+      def add_common_attributes(stats_hash, stats_xml)
+        stats_hash[:onbase] = map_attributes_to_hash(stats_xml.xpath('onbase').first)
+        stats_hash[:runs] = map_attributes_to_hash(stats_xml.xpath('runs').first)
+        stats_hash[:outcome] = map_attributes_to_hash(stats_xml.xpath('outcome').first)
+        stats_hash[:outs] = map_attributes_to_hash(stats_xml.xpath('outs').first)
+        stats_hash[:steal] = map_attributes_to_hash(stats_xml.xpath('steal').first)
       end
 
        ##
