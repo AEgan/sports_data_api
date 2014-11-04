@@ -9,7 +9,7 @@ describe SportsDataApi::Mlb::TeamSeasonStats, vcr: {
     SportsDataApi.set_key(:mlb, api_key(:mlb))
     SportsDataApi.set_access_level(:mlb, 't')
   end
-  let(:team_stats) { SportsDataApi::Nfl.team_season_stats("BUF", 2013, "REG") }
+  let(:team_stats) { SportsDataApi::Mlb.team_season_stats(2014) }
   let(:phillies) { team_stats.phillies }
   let(:hitting) { phillies[:hitting] }
   let(:pitching) { phillies[:pitching] }
@@ -19,8 +19,6 @@ describe SportsDataApi::Mlb::TeamSeasonStats, vcr: {
     describe 'meta methods' do
       it { should respond_to :id }
       it { should respond_to :year }
-      it { should respond_to :phillies }
-      it { should respond_to :yankees }
     end
   end
 
