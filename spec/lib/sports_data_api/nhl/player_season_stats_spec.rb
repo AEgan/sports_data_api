@@ -11,7 +11,7 @@ describe SportsDataApi::Nhl::PlayerSeasonStats, vcr: {
   end
   let(:player_stats) { SportsDataApi::Nhl.player_season_stats("3abc026d-b911-11e2-8051-f4ce4684ea4c") }
   let(:player) { player_stats.player }
-  let(:season) { player.seasons.first }
+  let(:season) { player_stats.seasons.first }
   let(:team) { season[:teams].first }
   let(:statistics) { team[:statistics] }
   let(:average) { team[:average] }
@@ -20,8 +20,8 @@ describe SportsDataApi::Nhl::PlayerSeasonStats, vcr: {
     subject { player_stats }
     describe "methods" do
       it { subject.id.should eq "3abc026d-b911-11e2-8051-f4ce4684ea4c" }
-      it { subject.seasons.kind_of(Array).should be true }
-      it { subject.player.kind_of(SportsDataApi::Nhl::Player).should be true }
+      it { subject.seasons.kind_of?(Array).should be true }
+      it { subject.player.kind_of?(SportsDataApi::Nhl::Player).should be true }
     end
   end
 
@@ -37,7 +37,7 @@ describe SportsDataApi::Nhl::PlayerSeasonStats, vcr: {
         it { subject.height.should eq '72' }
         it { subject.weight.should eq '193' }
         it { subject.position.should eq 'F' }
-        it { subject.primary_position.should eq 'C' }
+        it { subject.primary_position.should eq 'LW' }
         it { subject.jersey_number.should eq '70' }
         it { subject.experience.should eq '1' }
         it { subject.birth_place.should eq 'Kitchener, ON, CAN' }
@@ -50,10 +50,10 @@ describe SportsDataApi::Nhl::PlayerSeasonStats, vcr: {
     subject { season }
     describe "attributes" do
       it { subject[:id].should eq "a64701af-85bb-4cc0-bf72-15f6ba69757e" }
-      it { subject[:year].should eq "2013" }
+      it { subject[:year].should eq 2013 }
       it { subject[:type].should eq "REG" }
-      it { subject[:teams].kind_of(Array).should be true }
-      it { subject[:teams].first.kind_of(Hash).should be true }
+      it { subject[:teams].kind_of?(Array).should be true }
+      it { subject[:teams].first.kind_of?(Hash).should be true }
     end
   end
 
@@ -64,8 +64,8 @@ describe SportsDataApi::Nhl::PlayerSeasonStats, vcr: {
       it { subject[:name].should eq "Kings" }
       it { subject[:market].should eq "Los Angeles" }
       it { subject[:alias].should eq "LA" }
-      it { subject[:statistics].kind_of(Hash).should be true }
-      it { subject[:time_on_ice].kind_of(Hash).should be true }
+      it { subject[:statistics].kind_of?(Hash).should be true }
+      it { subject[:time_on_ice].kind_of?(Hash).should be true }
     end
   end
 
