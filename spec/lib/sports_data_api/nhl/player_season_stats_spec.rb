@@ -12,7 +12,7 @@ describe SportsDataApi::Nhl::PlayerSeasonStats, vcr: {
   let(:player_stats) { SportsDataApi::Nhl.player_season_stats("3abc026d-b911-11e2-8051-f4ce4684ea4c") }
   let(:player) { player_stats.player }
   let(:season) { player.seasons.first }
-  let(:team) { season[:team] }
+  let(:team) { season[:teams].first }
   let(:statistics) { team[:statistics] }
   let(:average) { team[:average] }
   let(:time_on_ice) { team[:time_on_ice] }
@@ -52,7 +52,8 @@ describe SportsDataApi::Nhl::PlayerSeasonStats, vcr: {
       it { subject[:id].should eq "a64701af-85bb-4cc0-bf72-15f6ba69757e" }
       it { subject[:year].should eq "2013" }
       it { subject[:type].should eq "REG" }
-      it { subject[:team].kind_of(Hash).should be true }
+      it { subject[:teams].kind_of(Array).should be true }
+      it { subject[:teams].first.kind_of(Hash).should be true }
     end
   end
 
@@ -143,7 +144,7 @@ describe SportsDataApi::Nhl::PlayerSeasonStats, vcr: {
     subject { time_on_ice }
     describe "attributes" do
       it { subject[:shifts].should eq 388 }
-      it { subject[:total].should eq 270:13 }
+      it { subject[:total].should eq "270:13" }
       it { subject[:shifts_pg].should eq 15.52 }
       it { subject[:toi_pg].should eq "10:49" }
     end
