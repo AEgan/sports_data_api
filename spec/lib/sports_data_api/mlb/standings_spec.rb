@@ -10,6 +10,7 @@ describe SportsDataApi::Mlb::Standings, vcr: {
     SportsDataApi.set_access_level(:nhl, 't')
   end
   let(:standings) { SportsDataApi::Mlb.standings("2014") }
+  let(:al) { standings.al }
 
   context "standings info" do
     subject { standings }
@@ -18,6 +19,18 @@ describe SportsDataApi::Mlb::Standings, vcr: {
       it { subject.year.should eq "2014" }
       it { subject.nl.kind_of?(Hash).should be true }
       it { subject.al.kind_of?(Hash).should be true }
+    end
+  end
+  context "league info" do
+    subject { al }
+    describe "attributes" do
+      it { subject[:id].should eq 'AL' }
+      it { subject[:divisions].kind_of?(Hash).should be true }
+    end
+    describe "divisions" do
+      it { subject[:divisions][:c].kind_of?(Hash).should be true }
+      it { subject[:divisions][:e].kind_of?(Hash).should be true }
+      it { subject[:divisions][:w].kind_of?(Hash).should be true }
     end
   end
 
