@@ -22,6 +22,9 @@ module SportsDataApi
     autoload :Boxscore, File.join(DIR, 'boxscore')
     autoload :Venue, File.join(DIR, 'venue')
     autoload :Venues, File.join(DIR, 'venues')
+    autoload :TeamSeasonStats, File.join(DIR, 'team_season_stats')
+    autoload :PlayerSeasonStats, File.join(DIR, 'player_season_stats')
+    autoload :Standings, File.join(DIR, 'standings')
 
     ##
     # Fetches all NBA teams
@@ -70,6 +73,27 @@ module SportsDataApi
     def self.team_roster(year=Date.today.year, version = DEFAULT_VERSION)
       response = self.response_xml(version, "/rosters-full/#{year}.xml")
       return Players.new(response.xpath("rosters"))
+    end
+
+    ##
+    # Fetches MLB team stats
+    def self.team_season_stats(year, version = DEFAULT_VERSION)
+      response = self.response_xml(version, "/seasontd/teams/#{year}.xml")
+      TeamSeasonStats.new(response.xpath('statistics'))
+    end
+
+    ##
+    # Fetches MLB player season stats and returns for EVERY PLAYER ARE YOU SERIOUS
+    def self.player_season_stats(year, version = DEFAULT_VERSION)
+      response = self.response_xml(version, "/seasontd/players/#{year}.xml")
+      PlayerSeasonStats.new(response.xpath('statistics'))
+    end
+
+    ##
+    # Fetches MLB divisional standings
+    def self.standings(year, version = DEFAULT_VERSION)
+      response = self.response_xml(version, "/rankings/#{year}.xml")
+      Standings.new(response.xpath('rankings').first)
     end
 
     private
