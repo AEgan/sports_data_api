@@ -30,7 +30,13 @@ module SportsDataApi
       end
 
       def create_teams(teams_xml)
-        Array.new
+        teams_array = Array.new
+        teams_xml.each do |team|
+          team_hash = map_attributes_to_hash(team.attributes)
+          team_hash[:rank] = map_attributes_to_hash(team.xpath('rank').first.attributes)
+          teams_array << team_hash
+        end
+        teams_array
       end
 
       # maps attributes to a hash and converts
