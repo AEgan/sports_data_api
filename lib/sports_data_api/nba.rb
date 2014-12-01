@@ -17,6 +17,7 @@ module SportsDataApi
     autoload :Season, File.join(DIR, 'season')
     autoload :Venue, File.join(DIR, 'venue')
     autoload :Broadcast, File.join(DIR, 'broadcast')
+    autoload :Standings, File.join(DIR, 'standings')
 
     ##
     # Fetches NBA season schedule for a given year and season
@@ -59,6 +60,14 @@ module SportsDataApi
       response = self.response_xml(version, "/games/#{year}/#{month}/#{day}/schedule.xml")
 
       return Games.new(response.xpath('league/daily-schedule'))
+    end
+
+    ##
+    # Fetches NBA standings for a given year and season
+    def self.standings(year, season, version = DEFAULT_VERSION)
+      response = self.response_xml(version, "/seasontd/#{year}/#{season}/standings.xml")
+
+      Standings.new(response.xpath('league/season'))
     end
 
     private
