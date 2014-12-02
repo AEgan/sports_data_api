@@ -42,7 +42,25 @@ module SportsDataApi
       # creates the teams array
       def create_teams(teams_xml)
         teams_array = Array.new
+        teams_xml.each do |team|
+          team_hash = map_attributes_to_hash(team.attributes)
+          team_hash[:games_behind] = map_attributes_to_hash(team.xpath('games-behind').first.attributes)
+          team_hash[:streak] = map_attributes_to_hash(team.xpath('streak').first.attributes)
+          team_hash[:records] = create_records(team.xpath('records').first)
+          teams_array.push(team_hash)
+        end
         teams_array
+      end
+
+      # creates a hash of records
+      def create_records(records_xml)
+        records_hash = Hash.new
+        records_xml.children.each do |child|
+          if child.is_a? Nokogiri::XML::Element
+            records_hash[child.name.to_sym] = map_attributes_to_hash(child.attributes)
+          end
+        end
+        records_hash
       end
 
       # maps attributes to a hash
