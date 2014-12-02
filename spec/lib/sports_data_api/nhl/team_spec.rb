@@ -19,6 +19,7 @@ describe SportsDataApi::Nhl::Team, vcr: {
     its(:division) { should eq 'PACIFIC' }
     its(:market) { should eq 'Los Angeles' }
     its(:name) { should eq 'Kings' }
+    its(:venue) { should be_an_instance_of SportsDataApi::Nhl::Venue }
   end
   context 'results from teams fetch (second team)' do
     subject { teams[:"44153da1-0f24-11e2-8525-18a905767e44"] }
@@ -29,6 +30,7 @@ describe SportsDataApi::Nhl::Team, vcr: {
     its(:division) { should eq 'PACIFIC' }
     its(:market) { should eq 'Arizona' }
     its(:name) { should eq 'Coyotes' }
+    its(:venue) { should be_an_instance_of SportsDataApi::Nhl::Venue }
   end
 
   context 'using players from the get_roster method' do
@@ -49,5 +51,17 @@ describe SportsDataApi::Nhl::Team, vcr: {
     its(:birthdate) { should eq "1992-08-10" }
     its(:draft_round) { should eq "1" }
     its(:draft_pick) { should eq "30" }
+  end
+
+  context 'get venue information' do
+    subject { teams.first.venue }
+    its(:id) { should eq "dec253d4-68df-470b-b8fc-d663a7fa4704" }
+    its(:name) { should eq "Staples Center" }
+    its(:capacity) { should eq "18118" }
+    its(:address) { should eq "1111 S. Figueroa St." }
+    its(:city) { should eq "Los Angeles" }
+    its(:state) { should eq "CA" }
+    its(:zip) { should eq "90015" }
+    its(:country) { should eq "USA" }
   end
 end

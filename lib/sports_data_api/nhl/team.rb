@@ -1,7 +1,7 @@
 module SportsDataApi
   module Nhl
     class Team
-      attr_reader :id, :name, :alias, :conference, :division, :market
+      attr_reader :id, :name, :alias, :conference, :division, :market, :venue
 
       def initialize(xml, conference = nil, division = nil)
         xml = xml.first if xml.is_a? Nokogiri::XML::NodeSet
@@ -12,6 +12,10 @@ module SportsDataApi
           @market = xml['market']
           @conference = conference
           @division = division
+          venue_xml = xml.xpath('venue')
+          unless venue_xml.empty?
+            @venue = Venue.new(venue_xml)
+          end
         end
       end
 
