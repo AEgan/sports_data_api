@@ -16,6 +16,7 @@ describe SportsDataApi::Nhl::PlayerSeasonStats, vcr: {
   let(:statistics) { team[:statistics] }
   let(:average) { team[:average] }
   let(:time_on_ice) { team[:time_on_ice] }
+  let(:goalie_stats) { SportsDataApi::Nhl.player_season_stats("42f41a5a-0f24-11e2-8525-18a905767e44").seasons.last[:teams].last[:goaltending] }
   context "player stats" do
     subject { player_stats }
     describe "methods" do
@@ -147,6 +148,23 @@ describe SportsDataApi::Nhl::PlayerSeasonStats, vcr: {
       it { subject[:total].should eq "270:13" }
       it { subject[:shifts_pg].should eq 15.52 }
       it { subject[:toi_pg].should eq "10:49" }
+    end
+  end
+  context "goaltending stats" do
+    subject { goalie_stats }
+    describe "attributes" do
+      it { subject.kind_of?(Hash).should be true }
+      it { subject[:total].kind_of?(Hash).should be true}
+      it { subject[:powerplay].kind_of?(Hash).should be true }
+      it { subject[:shorthanded].kind_of?(Hash).should be true }
+      it { subject[:even_strength].kind_of?(Hash).should be true }
+      it { subject[:penalty_shots].kind_of?(Hash).should be true }
+      it { subject[:shootout].kind_of?(Hash).should be true }
+      it { subject[:average].kind_of?(Hash).should be true }
+    end
+    describe 'average' do
+      it { subject[:average][:shots_against].should eq 26.0 }
+      it { subject[:average][:goals_against].should eq 2.35 }
     end
   end
 end

@@ -30,6 +30,10 @@ module SportsDataApi
           team_hash[:statistics] = create_statistics(team.xpath('statistics').first)
           team_hash[:average] = map_attributes_to_hash(team.xpath('statistics/average').first.attributes)
           team_hash[:time_on_ice] = create_time_on_ice(team.xpath('time_on_ice').first)
+          goaltending_xml = team.xpath('goaltending')
+          unless goaltending_xml.empty?
+            team_hash[:goaltending] = create_goaltending(goaltending_xml)
+          end
           teams << team_hash
         end
         teams
@@ -58,6 +62,20 @@ module SportsDataApi
         statistics_hash[:penalty_shots] = map_attributes_to_hash(total_xml.xpath('penalty').first.attributes)
         statistics_hash[:shootout] = map_attributes_to_hash(total_xml.xpath('shootout').first.attributes)
         statistics_hash
+      end
+
+      # creates a goaltending hash
+      def create_goaltending(goaltending_xml)
+        goaltending_hash = Hash.new
+        total_xml = goaltending_xml.xpath('total').first
+        goaltending_hash[:total] = map_attributes_to_hash(total_xml.attributes)
+        goaltending_hash[:powerplay] = map_attributes_to_hash(total_xml.xpath('powerplay').first.attributes)
+        goaltending_hash[:shorthanded] = map_attributes_to_hash(total_xml.xpath('shorthanded').first.attributes)
+        goaltending_hash[:even_strength] = map_attributes_to_hash(total_xml.xpath('evenstrength').first.attributes)
+        goaltending_hash[:penalty_shots] = map_attributes_to_hash(total_xml.xpath('penalty').first.attributes)
+        goaltending_hash[:shootout] = map_attributes_to_hash(total_xml.xpath('shootout').first.attributes)
+        goaltending_hash[:average] = map_attributes_to_hash(goaltending_xml.xpath('average').first.attributes)
+        goaltending_hash
       end
 
       # maps attributes to a hash and converts
