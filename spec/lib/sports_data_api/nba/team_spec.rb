@@ -32,7 +32,22 @@ describe SportsDataApi::Nba::Team, vcr: {
     its(:name) { should eq 'Wizards' }
     its(:players) { should eq [] }
     its(:points) { should be_nil }
+    its(:venue) { should be_an_instance_of(SportsDataApi::Nba::Venue) }
   end
+
+  context 'results from teams fetch - venue information' do
+    subject { teams.first.venue }
+    it { should be_an_instance_of(SportsDataApi::Nba::Venue) }
+    its(:id) { should eq "f62d5b49-d646-56e9-ba60-a875a00830f8" }
+    its(:name) { should eq "Verizon Center" }
+    its(:capacity) { should eq "20290" }
+    its(:address) { should eq "601 F St. N.W." }
+    its(:city) { should eq "Washington" }
+    its(:state) { should eq "D.C." }
+    its(:zip) { should eq "20004" }
+    its(:country) { should eq "USA" }
+  end
+
   context 'results from team roster fetch' do
     subject { roster }
     it { should be_an_instance_of(SportsDataApi::Nba::Team) }
@@ -58,7 +73,7 @@ describe SportsDataApi::Nba::Team, vcr: {
     its(:conference) { should be_nil }
     its(:division) { should be_nil }
     its(:players) { should be_an_instance_of(Array) }
-    
+
     context 'players' do
       subject { game_summary.home_team.players }
       its(:count) { should eq 14 }
