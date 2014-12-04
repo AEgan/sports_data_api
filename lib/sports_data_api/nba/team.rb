@@ -2,7 +2,7 @@ module SportsDataApi
   module Nba
     class Team
       attr_reader :id, :name, :market, :alias, :conference, :division,
-                  :stats, :players, :points
+                  :stats, :players, :points, :venue
 
       def initialize(xml, conference = nil, division = nil)
         xml = xml.first if xml.is_a? Nokogiri::XML::NodeSet
@@ -16,6 +16,10 @@ module SportsDataApi
           @division = division
           @players = xml.xpath("players/player").map do |player_xml|
             Player.new(player_xml)
+          end
+          venue_xml = xml.xpath('venue')
+          unless venue_xml.empty?
+            @venue = Venue.new(venue_xml)
           end
         end
       end
