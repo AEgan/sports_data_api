@@ -70,11 +70,23 @@ module SportsDataApi
       Standings.new(response.xpath('league/season'))
     end
 
+    # gets player season stats
+    def self.player_season_stats(year, season, team_id, version=DEFAULT_VERSION)
+      self.response_json(version, "/seasontd/#{year}/#{season}/teams/#{team_id}/statistics.json")
+    end
+
     private
     def self.response_xml(version, url)
       base_url = BASE_URL % { access_level: SportsDataApi.access_level(SPORT), version: version }
       response = SportsDataApi.generic_request("#{base_url}#{url}", SPORT)
       Nokogiri::XML(response.to_s).remove_namespaces!
+    end
+
+    def self.response_json(version, url)
+      require 'json'
+      base_url = BASE_URL % { access_level: SportsDataApi.access_level(SPORT), version: version }
+      response = SportsDataApi.generic_request("#{base_url}#{url}", SPORT)
+      JSON.parse(response)
     end
   end
 end
